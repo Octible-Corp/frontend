@@ -1,0 +1,47 @@
+.centered-block {
+  position: relative;
+}
+.centered-block__man {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.centered-block__container {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.centered-block__container--dragging {
+  opacity: 0.95;
+}
+
+.scroll-container {
+  height: auto;
+  width: auto;
+  background: #fff;
+  border: solid 0px #b9b9b9;
+  border-top-right-radius: 60px;
+  border-top-left-radius: 60px;
+}
+
+.hieroglyphs {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
+  width: auto;
+  height: auto;
+  justify-content: center;
+}
+
+.hieroglyph {
+  user-select: none;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.hieroglyph--hidden {
+  opacity: 0.2;
+}
