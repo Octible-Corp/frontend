@@ -1,14 +1,14 @@
 import axios from 'axios';
 import store from '../store';
-import { LOGOUT } from '../actions/types';
+//import { LOGOUT } from '../actions/types';
 const localhost = 'localhost:5000';
 const serverIP = 'octible.io';
 
 const api = axios.create({
   baseURL: `http://${localhost}/`,
   headers: {
-    'Content-Type': 'application/json'
-  }
+    'Content-Type': 'application/json',
+  },
 });
 /**
  intercept any error responses from the api
@@ -16,7 +16,7 @@ const api = axios.create({
  ie. Token has expired
  logout the user if the token has expired
 **/
-
+/*
 api.interceptors.response.use(
   (res) => res,
   (err) => {
@@ -26,5 +26,5 @@ api.interceptors.response.use(
     return Promise.reject(err);
   }
 );
-
+*/
 export default api;
