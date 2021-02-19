@@ -1,13 +1,13 @@
 import axios from 'axios';
 import store from '../store';
-import { LOGOUT } from '../actions/types';
+//import { LOGOUT } from '../actions/types';
 
 const localhost = 'localhost:5000';
 const serverIP = 'octible.io';
 
 const data_api = axios.create({
   baseURL: `http://${localhost}/api`,
-  responseType: 'blob'
+  responseType: 'blob',
 });
 
 /**
@@ -16,7 +16,7 @@ const data_api = axios.create({
  ie. Token has expired
  logout the user if the token has expired
 **/
-
+/*
 data_api.interceptors.response.use(
   (res) => res,
   (err) => {
@@ -25,6 +25,6 @@ data_api.interceptors.response.use(
     }
     return Promise.reject(err);
   }
-);
+);*/
 
 export default data_api;
