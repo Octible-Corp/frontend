@@ -21,66 +21,75 @@ import { Dimensions } from 'react';
 
 const Landing = ({ restaurant }) => {
   return (
-    <Fragment
-      style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-    >
-      <Image
-        style={{
-          maxHeight: 200,
-          maxWidth: '70%',
-          zIndex: 0,
-          //position: 'relative',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-        src={restaurant.background_photo}
-      />
-      <Image
-        style={{
-          height: 100,
-          width: 100,
-          borderRadius: 100 / 2,
-          //position: 'relative',
-          //bottom: 40,
-          //left: '40%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          border: '2.5px solid blue',
-          borderWidth: 3,
-        }}
-        src={restaurant.main_photo}
-      ></Image>
-
-      <h1
+    <body>
+      <div
+        id='Octible-app'
         style={{
           display: 'flex',
-          justifyContent: 'center',
+          flexDirection: 'column',
+          zIndex: 1,
+          flexGrow: 1,
+          position: 'relative',
           alignItems: 'center',
-          fontSize: '350%',
+          overflow: 'auto',
+          marginRight: 0,
+          marginBottom: 0,
         }}
       >
-        {restaurant.restaurant}
-      </h1>
-      <Row>
-        <MiniBubble text={'website'}></MiniBubble>
-        <MiniBubble text={'PDF Menu'}></MiniBubble>
-      </Row>
-      <p1 style={{ marginLeft: '55px' }}>Digital Menu</p1>
+        <Fragment>
+          <Image
+            style={{
+              maxWidth: '100%',
+              zIndex: 0,
+            }}
+            src={restaurant.background_photo}
+          />
+          <Image
+            style={{
+              height: 100,
+              width: 100,
+              zindex: 10,
+              borderRadius: 100 / 2,
+              position: 'relative',
+              bottom: 40,
+              //left: '40%',
+              justifyContent: 'center',
+              alignItems: 'center',
+              border: '2.5px solid blue',
+              borderWidth: 3,
+            }}
+            src={restaurant.main_photo}
+          ></Image>
+        </Fragment>
+        <p1
+          style={{
+            position: 'relative',
+            bottom: 30,
+            fontSize: '350%',
+          }}
+        >
+          {restaurant.restaurant}
+        </p1>
+        <Row style={{ position: 'relative', bottom: 20, marginBottom: -10 }}>
+          <MiniBubble text={'website'}></MiniBubble>
+          <MiniBubble text={'PDF Menu'}></MiniBubble>
+        </Row>
+        <p2 style={{ marginBottom: 10 }}>Digital Menu</p2>
 
-      <Row
-        //key={sect.section_id}
-        style={{ alignSelf: 'center', marginLeft: '5px' }}
-      >
-        <MenuBubble text={'Appetizers'}></MenuBubble>
-        <MenuBubble text={'Entreés'}></MenuBubble>
-        <MenuBubble text={'Sides'}></MenuBubble>
-        <MenuBubble text={'Desserts'}></MenuBubble>
-        <MenuBubble text={'Drinks'}></MenuBubble>
-      </Row>
+        <Row
+          //key={sect.section_id}
+          style={{ alignSelf: 'center', marginLeft: '5px' }}
+        >
+          <MenuBubble text={'Appetizers'}></MenuBubble>
+          <MenuBubble text={'Entreés'}></MenuBubble>
+          <MenuBubble text={'Sides'}></MenuBubble>
+          <MenuBubble text={'Desserts'}></MenuBubble>
+          <MenuBubble text={'Drinks'}></MenuBubble>
+        </Row>
 
-      <Card style={{ backgroundColor: 'red' }}></Card>
-    </Fragment>
+        <Card style={{ backgroundColor: 'red' }}></Card>
+      </div>
+    </body>
   );
 };
 
