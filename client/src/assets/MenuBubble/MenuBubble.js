@@ -13,6 +13,7 @@ const MenuBubble = ({ text }) => {
           height: '43px',
           alignSelf: 'center',
           textAlign: 'center',
+          marginBottom: 10,
         }}
         placeholder='(Appetisers, entree, drinks, etc)'
         type='text'

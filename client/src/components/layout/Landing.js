@@ -76,16 +76,12 @@ const Landing = ({ restaurant }) => {
         </Row>
         <p2 style={{ marginBottom: 10 }}>Digital Menu</p2>
 
-        <Row
-          //key={sect.section_id}
-          style={{ alignSelf: 'center', marginLeft: '5px' }}
-        >
-          <MenuBubble text={'Appetizers'}></MenuBubble>
-          <MenuBubble text={'Entreés'}></MenuBubble>
-          <MenuBubble text={'Sides'}></MenuBubble>
-          <MenuBubble text={'Desserts'}></MenuBubble>
-          <MenuBubble text={'Drinks'}></MenuBubble>
-        </Row>
+        <MenuBubble text={'Appetizers'}></MenuBubble>
+
+        <MenuBubble text={'Entreés'}></MenuBubble>
+        <MenuBubble text={'Sides'}></MenuBubble>
+        <MenuBubble text={'Desserts'}></MenuBubble>
+        <MenuBubble text={'Drinks'}></MenuBubble>
 
         <Card style={{ backgroundColor: 'red' }}></Card>
       </div>
