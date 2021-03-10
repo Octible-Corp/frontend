@@ -17,9 +17,11 @@ import {
   Modal,
 } from 'reactstrap';
 import { Image } from 'react-bootstrap';
+
 import { Dimensions } from 'react';
 
-const Landing = ({ restaurant }) => {
+const Landing = ({ restaurant, sections }) => {
+  console.log(sections);
   return (
     <body>
       <div
@@ -71,28 +73,54 @@ const Landing = ({ restaurant }) => {
           {restaurant.restaurant}
         </p1>
         <Row style={{ position: 'relative', bottom: 20, marginBottom: -10 }}>
-          <MiniBubble text={'website'}></MiniBubble>
-          <MiniBubble text={'PDF Menu'}></MiniBubble>
+          <MiniBubble
+            text={'website'}
+            link={`${restaurant.website}`}
+          ></MiniBubble>
+          <MiniBubble text={'PDF Menu'} link={null}></MiniBubble>
         </Row>
+
         <p2 style={{ marginBottom: 10 }}>Digital Menu</p2>
 
-        <MenuBubble text={'Appetizers'}></MenuBubble>
-
-        <MenuBubble text={'Entreés'}></MenuBubble>
-        <MenuBubble text={'Sides'}></MenuBubble>
-        <MenuBubble text={'Desserts'}></MenuBubble>
-        <MenuBubble text={'Drinks'}></MenuBubble>
-
-        <Card style={{ backgroundColor: 'red' }}></Card>
+        {sections.map((item) => (
+          <MenuBubble text={`${item.section}`}></MenuBubble>
+        ))}
+        <div style={{ height: 200 }}></div>
+      </div>
+      <div
+        color='info'
+        //type='div'
+        style={{
+          position: 'fixed',
+          padding: 20,
+          bottom: -75,
+          width: '100%',
+          borderRadius: 25,
+          height: 150,
+          background: '#4C9AFF',
+          textAlign: 'center',
+          zIndex: 5,
+        }}
+      >
+        <p1
+          style={{
+            color: 'white',
+          }}
+        >
+          Powered by Octible
+        </p1>
       </div>
     </body>
   );
 };
 
-Landing.propTypes = {};
+Landing.propTypes = {
+  sections: PropTypes.array.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   restaurant: state.menus.menu,
+  sections: state.menus.menu.sections,
 });
 
 export default connect(mapStateToProps, null)(Landing);
