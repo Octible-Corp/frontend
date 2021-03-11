@@ -17,7 +17,7 @@ import {
   Modal,
 } from 'reactstrap';
 import { Image } from 'react-bootstrap';
-
+import { Link } from 'react-router-dom';
 import { Dimensions } from 'react';
 
 const Landing = ({ restaurant, sections }) => {
@@ -60,7 +60,7 @@ const Landing = ({ restaurant, sections }) => {
               border: '2.5px solid blue',
               borderWidth: 3,
             }}
-            src={restaurant.main_photo}
+            src={restaurant.logo_photo}
           ></Image>
         </Fragment>
         <p1
@@ -82,8 +82,10 @@ const Landing = ({ restaurant, sections }) => {
 
         <p2 style={{ marginBottom: 10 }}>Digital Menu</p2>
 
-        {sections.map((item) => (
-          <MenuBubble text={`${item.section}`}></MenuBubble>
+        {sections.map((section) => (
+          <Link to={`/items/:${section.section_id}`}>
+            <MenuBubble text={`${section.section}`}></MenuBubble>
+          </Link>
         ))}
         <div style={{ height: 200 }}></div>
       </div>
@@ -119,8 +121,8 @@ Landing.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  restaurant: state.menus.menu,
-  sections: state.menus.menu.sections,
+  restaurant: state.menus.menu2,
+  sections: state.menus.menu2.sections,
 });
 
 export default connect(mapStateToProps, null)(Landing);
