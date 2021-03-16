@@ -83,7 +83,7 @@ const Landing = ({ restaurant, sections }) => {
         <p2 style={{ marginBottom: 10 }}>Digital Menu</p2>
 
         {sections.map((section) => (
-          <Link to={`/items/:${section.section_id}`}>
+          <Link to={`/items/:${section.section_id}`} id={section.section_id}>
             <MenuBubble text={`${section.section}`}></MenuBubble>
           </Link>
         ))}
