@@ -28,16 +28,14 @@ const Landing = ({ restaurant, sections, placeholder }) => {
     <body>
       <div
         color='info'
-        //type='div'
         style={{
-          position: 'fixed',
           padding: 20,
           top: 0,
           width: '100%',
           height: 80,
           background: 'white',
           textAlign: 'center',
-          zIndex: 5,
+          alignItems: 'center',
         }}
       >
         <Button onClick={() => console.log(items)}>
@@ -51,15 +49,14 @@ const Landing = ({ restaurant, sections, placeholder }) => {
             X GO BACK
           </h1>
         </Button>
-      </div>
-      <div style={{}}>
+
         <Button onClick={() => console.log(items)}>
           <h1>Item Page</h1>
         </Button>
+
         {items.map((item, index) => (
           <FoodCard item={item}></FoodCard>
         ))}
-        {/* <div style={{ height: 2000 }}></div> */}
       </div>
       <div
         color='info'

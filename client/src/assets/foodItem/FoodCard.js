@@ -22,23 +22,82 @@ const steak = require('./logo.png');
 
 const FoodCard = ({ item }) => {
   return (
-    <div style={{ marginBottom: 40 }}>
-      <Card>
-        <CardBody>
-          <Row>
-            <Col>
-              <CardTitle>
-                {item.title} {item.price}
-              </CardTitle>
-              <CardText>{item.description}</CardText>
-            </Col>
-            <CardImg
-              alt='...'
-              src='https://octiblemedia.s3-us-west-1.amazonaws.com/Screen+Shot+2021-01-27+at+1.18.48+PM.png'
-              style={{ width: 130, height: 80 }}
-            />
-          </Row>
-        </CardBody>
+    <div
+      style={{
+        marginBottom: 40,
+        //maxWidth: 400,
+        maxHeight: 100,
+        // justifyContent: 'center',
+        //alignItems: 'center',
+      }}
+    >
+      <Card
+        style={{
+          borderRadius: 10,
+          backgroundColor: 'white',
+          shadowColor: '#636c73',
+          shadowRadius: 10,
+          shadowOpacity: 0.2,
+          boxShadow: `1px 1px 1px #DCDCDC`,
+          justifyContent: 'center',
+        }}
+      >
+        <div
+          style={{
+            //borderRadius: 100,
+            justifyContent: 'center',
+          }}
+        >
+          <CardBody style={{ justifyContent: 'center' }}>
+            <Row>
+              <Col>
+                <CardTitle
+                  style={{
+                    // position: 'absolute',
+                    // top: -20,
+                    // left: 10,
+                    marginTop: -15,
+                    width: '90%',
+                    textAlign: 'left',
+                    fontFamily: 'Helvetica',
+                    fontSize: '100%',
+                    fontWeight: 'bold',
+                    color: 'black',
+                  }}
+                >
+                  {item.title}
+                  <p1
+                    style={{
+                      fontFamily: 'Helvetica',
+                      fontSize: '100%',
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    {' '}
+                    {item.price}
+                  </p1>
+                </CardTitle>
+
+                <CardText
+                  style={{
+                    marginTop: -15,
+                    width: '90%',
+                    textAlign: 'left',
+                    fontFamily: 'Helvetica',
+                    fontSize: '90%',
+                  }}
+                >
+                  {item.description}
+                </CardText>
+              </Col>
+              <CardImg
+                alt='...'
+                src='https://octiblemedia.s3-us-west-1.amazonaws.com/Screen+Shot+2021-01-27+at+1.18.48+PM.png'
+                style={{ width: 130, height: 80, borderRadius: 15 }}
+              />
+            </Row>
+          </CardBody>
+        </div>
       </Card>
     </div>
   );
