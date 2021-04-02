@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FoodCard from '../../assets/foodItem/FoodCard';
 
-import { Button } from 'reactstrap';
 import { Image } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import { Dimensions } from 'react';
+import { Card, FormGroup, Input, Button, Col, Modal, Row } from 'reactstrap';
+const leftArrow = require('../../assets/img/LeftArrow/backArrow.png');
 
 const Landing = ({ restaurant, sections, placeholder }) => {
   const [items, setItems] = useState([]);
@@ -26,6 +27,26 @@ const Landing = ({ restaurant, sections, placeholder }) => {
   }, []);
   return (
     <body>
+      <div
+        color='info'
+        //type='div'
+        style={{
+          position: 'fixed',
+          padding: 20,
+          top: 0,
+          width: '100%',
+          background: '#4C9AFF',
+          height: 100,
+          textAlign: 'left',
+          zIndex: 5,
+        }}
+      >
+        <Row>
+          <i class='ni ni-bold-left ni-5x'></i>
+          <h1 style={{ fontFamily: 'Helvetica' }}>GO BACK</h1>
+        </Row>
+      </div>
+
       <div
         color='info'
         style={{
