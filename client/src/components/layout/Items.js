@@ -31,6 +31,59 @@ const Landing = ({ restaurant, sections }) => {
   return (
     <body>
       <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          width: '100%',
+          height: 100,
+          background: 'white',
+          textAlign: 'left',
+          marginLeft: 20,
+          zIndex: 5,
+        }}
+      >
+        <Link to={`/`}>
+          <Button
+            onClick={() => console.log(items)}
+            style={{
+              backgroundColor: 'transparent',
+              borderColor: 'transparent',
+              shadowColor: '#636c73',
+              shadowRadius: 0,
+              shadowOpacity: 0.0,
+              boxShadow: `0px 0px 0px #DCDCDC`,
+              marginBottom: 10,
+              marginTop: 0,
+              //float: 'left',
+              //marginRight: 68,
+
+              width: 300,
+            }}
+          >
+            <Row>
+              <img
+                src={back2}
+                style={{
+                  marginRight: 20,
+                  alignText: 'left',
+                  alignSelf: 'left',
+                }}
+              ></img>
+              <h1
+                style={{
+                  position: 'fixed',
+                  left: 80,
+                  top: 16,
+                  color: '#22CDEF',
+                }}
+              >
+                GO BACK
+              </h1>
+            </Row>
+          </Button>
+        </Link>
+      </div>
+      <div
         color='info'
         style={{
           padding: 20,
@@ -42,7 +95,8 @@ const Landing = ({ restaurant, sections }) => {
           alignItems: 'center',
         }}
       >
-        <Link to={'/'}>
+        <h2 style={{ height: 100 }}></h2>
+        {/* <Link to={'/'}>
           <Button
             onClick={() => console.log(items)}
             style={{
@@ -57,6 +111,7 @@ const Landing = ({ restaurant, sections }) => {
               //float: 'left',
               //marginRight: 68,
               width: 300,
+              height: 100,
             }}
           >
             <Row>
@@ -75,11 +130,13 @@ const Landing = ({ restaurant, sections }) => {
                 GO BACK
               </h1>
             </Row>
-          </Button>
-        </Link>
+          </Button> 
+        </Link>*/}
         {items.map((item, index) => (
           <FoodCard item={item}></FoodCard>
         ))}
+
+        <h2 style={{ height: 100 }}></h2>
       </div>
       <div
         color='info'

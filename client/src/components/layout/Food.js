@@ -35,18 +35,16 @@ const Food = ({ restaurant, sections }) => {
   return (
     <body>
       <div
-        color='info'
-        style={
-          {
-            //   padding: 20,
-            //   top: 0,
-            //   width: '100%',
-            //   height: 80,
-            //   background: 'white',
-            //   textAlign: 'center',
-            //   alignItems: 'center',
-          }
-        }
+        style={{
+          position: 'fixed',
+          top: 0,
+          width: '100%',
+          height: 100,
+          background: 'white',
+          textAlign: 'left',
+          marginLeft: 20,
+          zIndex: 5,
+        }}
       >
         <Link to={`/items/${section_id}/`}>
           <Button
@@ -59,37 +57,77 @@ const Food = ({ restaurant, sections }) => {
               shadowOpacity: 0.0,
               boxShadow: `0px 0px 0px #DCDCDC`,
               marginBottom: 10,
-              marginTop: -20,
+              marginTop: 0,
               //float: 'left',
               //marginRight: 68,
+
               width: 300,
             }}
           >
             <Row>
               <img
                 src={back2}
-                style={{ marginRight: 20, alignSelf: 'flex-start' }}
+                style={{
+                  marginRight: 20,
+                  alignText: 'left',
+                  alignSelf: 'left',
+                }}
               ></img>
             </Row>
           </Button>
         </Link>
+      </div>
+      <div
+        color='info'
+        style={{
+          padding: 20,
+          top: 0,
+          width: '100%',
+          height: 80,
+
+          //   textAlign: 'center',
+          //   alignItems: 'center',
+        }}
+      >
+        <h2 style={{ height: 100 }}></h2>
         <h1>{items.title}</h1>
         <p2>{items.description}</p2>
-        {items.photos.length > 0
-          ? items.photos.map((picture) => (
-              //TODO THIS IS PlaCE HOLdER IMAGE MUST be set to
-              //src={photo_url} When urls are links
-              <img
-                src='https://octiblemedia.s3-us-west-1.amazonaws.com/Screen+Shot+2021-01-27+at+1.18.48+PM.png'
-                style={{ width: 130, height: 80, borderRadius: 15 }}
-              ></img>
-            ))
-          : null}
+        <div style={{ textAlign: 'center' }}>
+          {items.photos.length > 0
+            ? items.photos.map((picture) => (
+                //TODO THIS IS PlaCE HOLdER IMAGE MUST be set to
+                //src={photo_url} When urls are links
+                <img
+                  src='https://octiblemedia.s3-us-west-1.amazonaws.com/Screen+Shot+2021-01-27+at+1.18.48+PM.png'
+                  style={{
+                    width: 330,
+                    height: 240,
+                    borderRadius: 4,
+                  }}
+                ></img>
+              ))
+            : null}
+        </div>
+        <img
+          src='https://octiblemedia.s3-us-west-1.amazonaws.com/Screen+Shot+2021-01-27+at+1.18.48+PM.png'
+          style={{
+            width: 330,
+            height: 240,
+            borderRadius: 4,
+          }}
+        ></img>
+        <img
+          src='https://octiblemedia.s3-us-west-1.amazonaws.com/Screen+Shot+2021-01-27+at+1.18.48+PM.png'
+          style={{
+            width: 330,
+            height: 240,
+            borderRadius: 4,
+          }}
+        ></img>
 
-        {/* {items.map((item, index) => (
-          <FoodCard item={item} index={index}></FoodCard>
-        ))} */}
+        <h2 style={{ height: 150 }}></h2>
       </div>
+
       <div
         color='info'
         //type='div'
