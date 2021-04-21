@@ -20,7 +20,7 @@ import { primaryColor } from '../../primaryColor';
 
 const steak = require('./logo.png');
 
-const FoodCard = ({ item }) => {
+const FoodCard = ({ item, index }) => {
   return (
     <div
       style={{
@@ -74,7 +74,7 @@ const FoodCard = ({ item }) => {
                     }}
                   >
                     {' '}
-                    {item.price}
+                    {index} {item.price}
                   </p1>
                 </CardTitle>
 
@@ -90,6 +90,7 @@ const FoodCard = ({ item }) => {
                   {item.description}
                 </CardText>
               </Col>
+              {item.item_photos ? null : null}
               <CardImg
                 alt='...'
                 src='https://octiblemedia.s3-us-west-1.amazonaws.com/Screen+Shot+2021-01-27+at+1.18.48+PM.png'

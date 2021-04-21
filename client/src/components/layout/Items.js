@@ -7,8 +7,10 @@ import { Image } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import { Dimensions } from 'react';
 import { Card, FormGroup, Input, Button, Col, Modal, Row } from 'reactstrap';
+import backBoy from './backArrow.png';
+import back2 from '../../assets/img/LeftArrow/LA2.png';
 
-const leftArrow = require('../../assets/img/LeftArrow/backArrow.png');
+import { primaryColor } from '../../primaryColor';
 
 const Landing = ({ restaurant, sections, placeholder }) => {
   const [items, setItems] = useState([]);
@@ -30,29 +32,6 @@ const Landing = ({ restaurant, sections, placeholder }) => {
     <body>
       <div
         color='info'
-        //type='div'
-        style={{
-          position: 'fixed',
-          padding: 20,
-          top: 0,
-          width: '100%',
-          background: '#4C9AFF',
-          height: 100,
-          textAlign: 'left',
-          zIndex: 5,
-        }}
-      >
-        <Row>
-          {/* <i class='nc ni-bold-left ni-custom'></i> */}
-
-          <img src='/backArrow.png'></img>
-
-          <h1 style={{ fontFamily: 'Helvetica' }}>GO BACK</h1>
-        </Row>
-      </div>
-
-      <div
-        color='info'
         style={{
           padding: 20,
           top: 0,
@@ -63,24 +42,39 @@ const Landing = ({ restaurant, sections, placeholder }) => {
           alignItems: 'center',
         }}
       >
-        <Button onClick={() => console.log(items)}>
-          <h1
+        <Link to={'/'}>
+          <Button
+            onClick={() => console.log(items)}
             style={{
-              // position: 'fixed',
-              // left: 40,
-              color: 'blue',
+              backgroundColor: 'transparent',
+              borderColor: 'transparent',
+              shadowColor: '#636c73',
+              shadowRadius: 0,
+              shadowOpacity: 0.0,
+              boxShadow: `0px 0px 0px #DCDCDC`,
+              marginBottom: 10,
+              marginTop: -20,
+              width: 500,
             }}
           >
-            X GO BACK
-          </h1>
-        </Button>
+            <Row>
+              <img src={back2} style={{ marginRight: 20 }}></img>
 
-        <Button onClick={() => console.log(items)}>
-          <h1>Item Page</h1>
-        </Button>
-
+              <h1
+                style={{
+                  position: 'fixed',
+                  left: 70,
+                  top: 16,
+                  color: '#22CDEF',
+                }}
+              >
+                GO BACK
+              </h1>
+            </Row>
+          </Button>
+        </Link>
         {items.map((item, index) => (
-          <FoodCard item={item}></FoodCard>
+          <FoodCard item={item} index={index}></FoodCard>
         ))}
       </div>
       <div
