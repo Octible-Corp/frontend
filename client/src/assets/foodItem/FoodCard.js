@@ -16,6 +16,7 @@ import {
   Col,
 } from 'reactstrap';
 import { Image } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { primaryColor } from '../../primaryColor';
 
 const steak = require('./logo.png');
@@ -42,63 +43,70 @@ const FoodCard = ({ item, index }) => {
           justifyContent: 'center',
         }}
       >
-        <div
-          style={{
-            //borderRadius: 100,
-            justifyContent: 'center',
-          }}
+        <Link
+          to={`/items/:${item.section_id}/food/:${item.item_id}`}
+          id={item.section_id}
+          food={item.item_id}
         >
-          <CardBody style={{ justifyContent: 'center' }}>
-            <Row>
-              <Col>
-                <CardTitle
-                  style={{
-                    // position: 'absolute',
-                    // top: -20,
-                    // left: 10,
-                    marginTop: -15,
-                    width: '90%',
-                    textAlign: 'left',
-                    fontFamily: 'Helvetica',
-                    fontSize: '100%',
-                    fontWeight: 'bold',
-                    color: 'black',
-                  }}
-                >
-                  {item.title}
-                  <p1
+          <div
+            style={{
+              //borderRadius: 100,
+              justifyContent: 'center',
+            }}
+          >
+            <CardBody style={{ justifyContent: 'center' }}>
+              <Row>
+                <Col>
+                  <CardTitle
                     style={{
+                      // position: 'absolute',
+                      // top: -20,
+                      // left: 10,
+                      marginTop: -15,
+                      width: '90%',
+                      textAlign: 'left',
                       fontFamily: 'Helvetica',
                       fontSize: '100%',
                       fontWeight: 'bold',
+                      color: 'black',
                     }}
                   >
-                    {' '}
-                    {index} {item.price}
-                  </p1>
-                </CardTitle>
+                    {item.title}
+                    <p1
+                      style={{
+                        fontFamily: 'Helvetica',
+                        fontSize: '100%',
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      {' '}
+                      {item.price}
+                    </p1>
+                  </CardTitle>
 
-                <CardText
-                  style={{
-                    marginTop: -15,
-                    width: '90%',
-                    textAlign: 'left',
-                    fontFamily: 'Helvetica',
-                    fontSize: '90%',
-                  }}
-                >
-                  {item.description}
-                </CardText>
-              </Col>
-              {item.item_photos ? null : null}
-              <CardImg
-                alt='...'
-                src='https://octiblemedia.s3-us-west-1.amazonaws.com/Screen+Shot+2021-01-27+at+1.18.48+PM.png'
-                style={{ width: 130, height: 80, borderRadius: 15 }}
-              />
-            </Row>
-          </CardBody>
-        </div>
+                  <CardText
+                    style={{
+                      marginTop: -15,
+                      width: '90%',
+                      textAlign: 'left',
+                      fontFamily: 'Helvetica',
+                      fontSize: '90%',
+                      color: 'grey',
+                    }}
+                  >
+                    {item.description}
+                  </CardText>
+                </Col>
+                {item.item_photos ? null : null}
+                <CardImg
+                  alt='...'
+                  src='https://octiblemedia.s3-us-west-1.amazonaws.com/Screen+Shot+2021-01-27+at+1.18.48+PM.png'
+                  style={{ width: 130, height: 80, borderRadius: 15 }}
+                />
+              </Row>
+            </CardBody>
+          </div>
+        </Link>
       </Card>
     </div>
   );

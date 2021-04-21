@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Landing from './components/layout/Landing.js';
 import Items from './components/layout/Items.js';
+import Food from './components/layout/Food.js';
 import { Provider } from 'react-redux';
 import store from './store';
 import './assets/css/argon-design-system-react.css';
@@ -15,6 +16,11 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={Landing} />
             <Route exact path='/items/:section_id' component={Items} />
+            <Route
+              exact
+              path='/items/:section_id/food/:food_id'
+              component={Food}
+            />
           </Switch>
         </Fragment>
       </Router>

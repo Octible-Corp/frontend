@@ -12,37 +12,29 @@ import back2 from '../../assets/img/LeftArrow/LA2.png';
 
 import { primaryColor } from '../../primaryColor';
 
-const Landing = ({ restaurant, sections, placeholder }) => {
+const Food = ({ id, food }) => {
   const [items, setItems] = useState([]);
-  const { section_id } = useParams();
+  const { food_id, section_id } = useParams();
   useEffect(() => {
-    const section = section_id.substring(1);
-    console.log('SECTION ID:', section);
-    let placeholder = [];
-    restaurant.items.map((item) => {
-      if (item.section_id === section) {
-        console.log('CALLING', item.section_id, section);
-        placeholder.push(item);
-      }
-    });
-    setItems(placeholder);
-    console.log('current items: ', items);
-  }, []);
+    console.log(food_id);
+  });
   return (
     <body>
       <div
         color='info'
-        style={{
-          padding: 20,
-          top: 0,
-          width: '100%',
-          height: 80,
-          background: 'white',
-          textAlign: 'center',
-          alignItems: 'center',
-        }}
+        style={
+          {
+            //   padding: 20,
+            //   top: 0,
+            //   width: '100%',
+            //   height: 80,
+            //   background: 'white',
+            //   textAlign: 'center',
+            //   alignItems: 'center',
+          }
+        }
       >
-        <Link to={'/'}>
+        <Link to={`/items/${section_id}/`}>
           <Button
             onClick={() => console.log(items)}
             style={{
@@ -77,9 +69,10 @@ const Landing = ({ restaurant, sections, placeholder }) => {
             </Row>
           </Button>
         </Link>
-        {items.map((item, index) => (
+
+        {/* {items.map((item, index) => (
           <FoodCard item={item} index={index}></FoodCard>
-        ))}
+        ))} */}
       </div>
       <div
         color='info'
@@ -108,17 +101,8 @@ const Landing = ({ restaurant, sections, placeholder }) => {
   );
 };
 
-Landing.propTypes = {
-  sections: PropTypes.array.isRequired,
-  placeholder: PropTypes.array.isRequired,
-};
+Food.propTypes = {};
 
-const mapStateToProps = (state, ownProps) => ({
-  restaurant: state.menus.menu2,
-  sections: state.menus.menu.sections,
-  placeholder: state.menus.menu2.items.filter(
-    (item) => ownProps.id === item.id
-  ),
-});
+const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps, null)(Landing);
+export default connect(mapStateToProps, null)(Food);
