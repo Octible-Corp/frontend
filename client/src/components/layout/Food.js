@@ -12,12 +12,26 @@ import back2 from '../../assets/img/LeftArrow/LA2.png';
 
 import { primaryColor } from '../../primaryColor';
 
-const Food = ({ id, food }) => {
-  const [items, setItems] = useState([]);
+const Food = ({ restaurant, sections }) => {
+  const [items, setItems] = useState({
+    description: '',
+    title: '',
+    photos: [],
+  });
   const { food_id, section_id } = useParams();
   useEffect(() => {
-    console.log(food_id);
-  });
+    const foody = food_id.substring(1);
+    const secc = section_id.substring(1);
+    restaurant.items.map((item) => {
+      if (item.section_id === secc && item.item_id === foody) {
+        setItems({
+          description: item.description,
+          title: item.title,
+          photos: item.item_photos,
+        });
+      }
+    });
+  }, []);
   return (
     <body>
       <div
@@ -56,19 +70,21 @@ const Food = ({ id, food }) => {
                 src={back2}
                 style={{ marginRight: 20, alignSelf: 'flex-start' }}
               ></img>
-              <h1
-                style={{
-                  position: 'fixed',
-                  left: 80,
-                  top: 16,
-                  color: '#22CDEF',
-                }}
-              >
-                GO BACK
-              </h1>
             </Row>
           </Button>
         </Link>
+        <h1>{items.title}</h1>
+        <p2>{items.description}</p2>
+        {items.photos.length > 0
+          ? items.photos.map((picture) => (
+              //TODO THIS IS PlaCE HOLdER IMAGE MUST be set to
+              //src={photo_url} When urls are links
+              <img
+                src='https://octiblemedia.s3-us-west-1.amazonaws.com/Screen+Shot+2021-01-27+at+1.18.48+PM.png'
+                style={{ width: 130, height: 80, borderRadius: 15 }}
+              ></img>
+            ))
+          : null}
 
         {/* {items.map((item, index) => (
           <FoodCard item={item} index={index}></FoodCard>
@@ -101,8 +117,14 @@ const Food = ({ id, food }) => {
   );
 };
 
-Food.propTypes = {};
+Food.propTypes = {
+  sections: PropTypes.array.isRequired,
+  placeholder: PropTypes.array.isRequired,
+};
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state, ownProps) => ({
+  restaurant: state.menus.menu2,
+  sections: state.menus.menu.sections,
+});
 
 export default connect(mapStateToProps, null)(Food);

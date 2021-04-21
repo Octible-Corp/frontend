@@ -43,11 +43,7 @@ const FoodCard = ({ item, index }) => {
           justifyContent: 'center',
         }}
       >
-        <Link
-          to={`/items/:${item.section_id}/food/:${item.item_id}`}
-          id={item.section_id}
-          food={item.item_id}
-        >
+        <Link to={`/items/:${item.section_id}/food/:${item.item_id}`}>
           <div
             style={{
               //borderRadius: 100,

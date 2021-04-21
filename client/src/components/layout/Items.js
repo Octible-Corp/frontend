@@ -12,7 +12,7 @@ import back2 from '../../assets/img/LeftArrow/LA2.png';
 
 import { primaryColor } from '../../primaryColor';
 
-const Landing = ({ restaurant, sections, placeholder }) => {
+const Landing = ({ restaurant, sections }) => {
   const [items, setItems] = useState([]);
   const { section_id } = useParams();
   useEffect(() => {
@@ -78,7 +78,7 @@ const Landing = ({ restaurant, sections, placeholder }) => {
           </Button>
         </Link>
         {items.map((item, index) => (
-          <FoodCard item={item} index={index}></FoodCard>
+          <FoodCard item={item}></FoodCard>
         ))}
       </div>
       <div
@@ -116,9 +116,6 @@ Landing.propTypes = {
 const mapStateToProps = (state, ownProps) => ({
   restaurant: state.menus.menu2,
   sections: state.menus.menu.sections,
-  placeholder: state.menus.menu2.items.filter(
-    (item) => ownProps.id === item.id
-  ),
 });
 
 export default connect(mapStateToProps, null)(Landing);
