@@ -7,6 +7,7 @@ import { Image } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import { Dimensions } from 'react';
 import { Card, FormGroup, Input, Button, Col, Modal, Row } from 'reactstrap';
+
 const leftArrow = require('../../assets/img/LeftArrow/backArrow.png');
 
 const Landing = ({ restaurant, sections, placeholder }) => {
@@ -42,7 +43,10 @@ const Landing = ({ restaurant, sections, placeholder }) => {
         }}
       >
         <Row>
-          <i class='ni ni-bold-left ni-5x'></i>
+          {/* <i class='nc ni-bold-left ni-custom'></i> */}
+
+          <img src='/backArrow.png'></img>
+
           <h1 style={{ fontFamily: 'Helvetica' }}>GO BACK</h1>
         </Row>
       </div>
