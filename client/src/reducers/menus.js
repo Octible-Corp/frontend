@@ -1,5 +1,9 @@
 import { GET_MENU } from '../actions/types';
-
+let initialState = {
+  menu: { sections: [] },
+  loaded: false,
+};
+/*
 let initialState = {
   menu: {
     menu_id: 'randomid',
@@ -134,81 +138,18 @@ let initialState = {
     active: false,
   },
 };
+*/
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
-
   switch (type) {
     case GET_MENU:
       return {
         ...state,
         menu: payload,
+        loaded: true,
       };
     default:
       return state;
   }
 }
-
-let obj = {
-  _id: { $oid: '60416dbbe414cf4aafb724fd' },
-  menu_id: 'nk9hw0y',
-  user_id: '3mw114tlkjqkpg67',
-  name: 'Grill King',
-  website: 'www.octible.io',
-  logo_photo: '5ffa735682b140cea932dab0/sktwi1tbiklvi5bg9.jpg',
-  background_photo: '',
-  pdf: '',
-  sections: [
-    { section_id: 'fj2npv2', section: 'Entres', order: { $numberInt: '2' } },
-    { section_id: 'zjmsq94', section: 'Deserts', order: { $numberInt: '3' } },
-  ],
-  items: [
-    {
-      item_id: 'xow0p0a',
-      title: 'Eggs',
-      description: 'Just simple Eggs',
-      price: '$19.99',
-      section_id: 'la824n7',
-      order: null,
-      item_photos: [
-        {
-          photo_url: '5ffa735682b140cea932dab0/sktwi1tfmklvjjqxl.jpg',
-          featured: null,
-          order: null,
-        },
-      ],
-    },
-    {
-      item_id: 'qqtvogd',
-      title: 'Steak',
-      description: 'This is a description.',
-      price: '$19.99',
-      section_id: 'fj2npv2',
-      order: null,
-      item_photos: [
-        {
-          url: '5ffa735682b140cea932dab0/sktwi1tu0klvl78m4.jpg',
-          featured: null,
-          order: null,
-        },
-      ],
-    },
-    {
-      item_id: 'dtstseu',
-      title: 'Elk Steak',
-      description: 'This is a test with a photo.',
-      price: '$99.99',
-      section_id: 'fj2npv2',
-      order: null,
-      item_photos: [
-        {
-          url:
-            'https://octible.s3.us-east-2.amazonaws.com/5ffa735682b140cea932dab0/sktwi1twxklvlfrkg.jpg',
-          featured: null,
-          order: null,
-        },
-      ],
-    },
-  ],
-  active: false,
-};

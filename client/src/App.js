@@ -14,7 +14,7 @@ const App = () => {
       <Router>
         <Fragment>
           <Switch>
-            <Route exact path='/' component={Landing} />
+            <Route exact path='/:restaurant_id' component={Landing} />
             <Route exact path='/items/:section_id' component={Items} />
             <Route
               exact

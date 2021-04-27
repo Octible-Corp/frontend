@@ -1,21 +1,19 @@
 import api from '../utils/api';
-import data_api from '../utils/data_api';
-import { setAlert } from './alert';
-import { GET_MENUS } from './types';
+import { GET_MENU } from './types';
 
 // Get Menus
-export const getMenus = (id) => async (dispatch) => {
+export const getMenu = (url) => async (dispatch) => {
   try {
-    const body = { id: id };
-    const res = await api.post('/posts/menus', body);
+    const restaurant_id = url.split(':').pop();
+    const body = { restaurant_id: 'o0wz8aizx2ax' };
+    const res = await api.post('/get_menu', body);
+    console.log('--DATA--');
+    console.log(res.data);
     dispatch({
-      type: GET_MENUS,
+      type: GET_MENU,
       payload: res.data,
     });
   } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: 'Get menu error' },
-    });
+    throw new Error(err);
   }
 };

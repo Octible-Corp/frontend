@@ -16,9 +16,8 @@ app.use(cors());
 // Init Middleware
 app.use(express.json());
 
-// API Routes densocial.io/...
-//General
-app.use('/auth', require('./api/Auth'));
+//Main
+app.use('/', require('./api/Menus'));
 
 //Listen on port 5000 (local) or env.PORT for (production)
 const PORT = process.env.PORT || 5000;

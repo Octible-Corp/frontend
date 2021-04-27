@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import FoodCard from '../../assets/foodItem/FoodCard';
 
 import { Image } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { Dimensions } from 'react';
 import { Card, FormGroup, Input, Button, Col, Modal, Row } from 'reactstrap';
 
@@ -13,21 +13,20 @@ import back2 from '../../assets/img/LeftArrow/LA2.png';
 import { primaryColor } from '../../primaryColor';
 
 const Landing = ({ restaurant, sections }) => {
+  const history = useHistory();
   const [items, setItems] = useState([]);
   const { section_id } = useParams();
   useEffect(() => {
     const section = section_id.substring(1);
-    console.log('SECTION ID:', section);
     let placeholder = [];
     restaurant.items.map((item) => {
       if (item.section_id === section) {
-        console.log('CALLING', item.section_id, section);
         placeholder.push(item);
       }
     });
     setItems(placeholder);
-    console.log('current items: ', items);
   }, []);
+
   return (
     <body>
       <div
@@ -42,46 +41,46 @@ const Landing = ({ restaurant, sections }) => {
           zIndex: 5,
         }}
       >
-        <Link to={`/`}>
-          <Button
-            onClick={() => console.log(items)}
-            style={{
-              backgroundColor: 'transparent',
-              borderColor: 'transparent',
-              shadowColor: '#636c73',
-              shadowRadius: 0,
-              shadowOpacity: 0.0,
-              boxShadow: `0px 0px 0px #DCDCDC`,
-              marginBottom: 10,
-              marginTop: 0,
-              //float: 'left',
-              //marginRight: 68,
+        <Button
+          onClick={() => {
+            history.goBack();
+          }}
+          style={{
+            backgroundColor: 'transparent',
+            borderColor: 'transparent',
+            shadowColor: '#636c73',
+            shadowRadius: 0,
+            shadowOpacity: 0.0,
+            boxShadow: `0px 0px 0px #DCDCDC`,
+            marginBottom: 10,
+            marginTop: 0,
+            //float: 'left',
+            //marginRight: 68,
 
-              width: 300,
-            }}
-          >
-            <Row>
-              <img
-                src={back2}
-                style={{
-                  marginRight: 20,
-                  alignText: 'left',
-                  alignSelf: 'left',
-                }}
-              ></img>
-              <h1
-                style={{
-                  position: 'fixed',
-                  left: 80,
-                  top: 16,
-                  color: '#22CDEF',
-                }}
-              >
-                GO BACK
-              </h1>
-            </Row>
-          </Button>
-        </Link>
+            width: 300,
+          }}
+        >
+          <Row>
+            <img
+              src={back2}
+              style={{
+                marginRight: 20,
+                alignText: 'left',
+                alignSelf: 'left',
+              }}
+            ></img>
+            <h1
+              style={{
+                position: 'fixed',
+                left: 80,
+                top: 16,
+                color: '#22CDEF',
+              }}
+            >
+              GO BACK
+            </h1>
+          </Row>
+        </Button>
       </div>
       <div
         color='info'
@@ -171,7 +170,7 @@ Landing.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  restaurant: state.menus.menu2,
+  restaurant: state.menus.menu,
   sections: state.menus.menu.sections,
 });
 
