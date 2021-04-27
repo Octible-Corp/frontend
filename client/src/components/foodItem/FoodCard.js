@@ -18,6 +18,7 @@ import {
 import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { primaryColor } from '../../primaryColor';
+import PropTypes from 'prop-types';
 
 const steak = require('./logo.png');
 
@@ -93,12 +94,13 @@ const FoodCard = ({ item, index }) => {
                     {item.description}
                   </CardText>
                 </Col>
-                {item.item_photos ? null : null}
-                <CardImg
-                  alt='...'
-                  src='https://octiblemedia.s3-us-west-1.amazonaws.com/Screen+Shot+2021-01-27+at+1.18.48+PM.png'
-                  style={{ width: 130, height: 80, borderRadius: 15 }}
-                />
+                {item.item_photos.length > 0 ? (
+                  <CardImg
+                    alt='...'
+                    src={`${item.item_photos[0]?.url}`}
+                    style={{ width: 130, height: 80, borderRadius: 15 }}
+                  />
+                ) : null}
               </Row>
             </CardBody>
           </div>
@@ -108,7 +110,9 @@ const FoodCard = ({ item, index }) => {
   );
 };
 
-FoodCard.propTypes = {};
+FoodCard.propTypes = {
+  item: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = (state) => ({});
 

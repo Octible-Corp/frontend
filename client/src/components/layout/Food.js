@@ -1,19 +1,12 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FoodCard from '../../assets/foodItem/FoodCard';
-
-import { Image } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-import { Dimensions } from 'react';
-import { Card, FormGroup, Input, Button, Col, Modal, Row } from 'reactstrap';
-
+import { Button, Row } from 'reactstrap';
 import back2 from '../../assets/img/LeftArrow/LA2.png';
 
-import { primaryColor } from '../../primaryColor';
-
-const Food = ({ restaurant, sections }) => {
-  const [items, setItems] = useState({
+const Food = ({ restaurant }) => {
+  const [main, setMain] = useState({
     description: '',
     title: '',
     photos: [],
@@ -22,16 +15,12 @@ const Food = ({ restaurant, sections }) => {
   useEffect(() => {
     const foody = food_id.substring(1);
     const secc = section_id.substring(1);
-    restaurant.items.map((item) => {
-      if (item.section_id === secc && item.item_id === foody) {
-        setItems({
-          description: item.description,
-          title: item.title,
-          photos: item.item_photos,
-        });
-      }
-    });
+    let found_item = restaurant.items.find(
+      (item) => item.section_id === secc && item.item_id === foody
+    );
+    setMain(found_item);
   }, []);
+
   return (
     <body>
       <div
@@ -48,7 +37,7 @@ const Food = ({ restaurant, sections }) => {
       >
         <Link to={`/items/${section_id}/`}>
           <Button
-            onClick={() => console.log(items)}
+            onClick={() => {}}
             style={{
               backgroundColor: 'transparent',
               borderColor: 'transparent',
@@ -90,15 +79,15 @@ const Food = ({ restaurant, sections }) => {
         }}
       >
         <h2 style={{ height: 100 }}></h2>
-        <h1>{items.title}</h1>
-        <p2>{items.description}</p2>
+        <h1>{main.title}</h1>
+        <p2>{main.description}</p2>
         <div style={{ textAlign: 'center' }}>
-          {items.photos.length > 0
-            ? items.photos.map((picture) => (
+          {main.item_photos.length > 0
+            ? main.item_photos.map((photo) => (
                 //TODO THIS IS PlaCE HOLdER IMAGE MUST be set to
                 //src={photo_url} When urls are links
                 <img
-                  src='https://octiblemedia.s3-us-west-1.amazonaws.com/Screen+Shot+2021-01-27+at+1.18.48+PM.png'
+                  src={`${photo.url}`}
                   style={{
                     width: 330,
                     height: 240,

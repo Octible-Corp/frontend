@@ -1,16 +1,10 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FoodCard from '../../assets/foodItem/FoodCard';
-
-import { Image } from 'react-bootstrap';
-import { Link, useParams, useHistory } from 'react-router-dom';
-import { Dimensions } from 'react';
-import { Card, FormGroup, Input, Button, Col, Modal, Row } from 'reactstrap';
-
+import FoodCard from '../foodItem/FoodCard';
+import { useParams, useHistory } from 'react-router-dom';
+import { Button, Row } from 'reactstrap';
 import back2 from '../../assets/img/LeftArrow/LA2.png';
-
-import { primaryColor } from '../../primaryColor';
 
 const Landing = ({ restaurant, sections }) => {
   const history = useHistory();
@@ -18,12 +12,9 @@ const Landing = ({ restaurant, sections }) => {
   const { section_id } = useParams();
   useEffect(() => {
     const section = section_id.substring(1);
-    let placeholder = [];
-    restaurant.items.map((item) => {
-      if (item.section_id === section) {
-        placeholder.push(item);
-      }
-    });
+    let placeholder = restaurant.items.filter(
+      (item) => item.section_id === section
+    );
     setItems(placeholder);
   }, []);
 
@@ -132,7 +123,7 @@ const Landing = ({ restaurant, sections }) => {
           </Button> 
         </Link>*/}
         {items.map((item, index) => (
-          <FoodCard item={item}></FoodCard>
+          <FoodCard item={item} key={index}></FoodCard>
         ))}
 
         <h2 style={{ height: 100 }}></h2>
