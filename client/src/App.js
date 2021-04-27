@@ -1,8 +1,8 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Landing from './components/layout/Landing.js';
-import Items from './components/layout/Items.js';
-import Food from './components/layout/Food.js';
+import Landing from './components/Landing.js';
+import Items from './components/Items.js';
+import Food from './components/Food.js';
 import { Provider } from 'react-redux';
 import store from './store';
 import './assets/css/argon-design-system-react.css';

@@ -1,12 +1,12 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import MiniBubble from '../../assets/MiniBubble/MiniBubble';
-import MenuBubble from '../../assets/MenuBubble/MenuBubble';
+import MiniBubble from '../assets/MiniBubble/MiniBubble';
+import MenuBubble from '../assets/MenuBubble/MenuBubble';
 import { Row } from 'reactstrap';
 import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { getMenu } from '../../actions/menus';
+import { getMenu } from '../actions/menus';
 
 const sleep = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));

@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { Button, Row } from 'reactstrap';
-import back2 from '../../assets/img/LeftArrow/LA2.png';
+import back2 from '../assets/img/LeftArrow/LA2.png';
 
 const Food = ({ restaurant }) => {
   const [main, setMain] = useState({

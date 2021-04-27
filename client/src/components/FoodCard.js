@@ -1,26 +1,16 @@
-import React, { Fragment, useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import {
   Card,
-  Button,
-  CardHeader,
   CardBody,
-  CardFooter,
   CardImg,
-  CardImgOverlay,
   CardTitle,
   CardText,
-  ListGroupItem,
-  ListGroup,
   Row,
   Col,
 } from 'reactstrap';
-import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { primaryColor } from '../../primaryColor';
 import PropTypes from 'prop-types';
-
-const steak = require('./logo.png');
 
 const FoodCard = ({ item, index }) => {
   return (

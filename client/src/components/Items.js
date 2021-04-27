@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FoodCard from '../foodItem/FoodCard';
+import FoodCard from './FoodCard';
 import { useParams, useHistory } from 'react-router-dom';
 import { Button, Row } from 'reactstrap';
-import back2 from '../../assets/img/LeftArrow/LA2.png';
+import back2 from '../assets/img/LeftArrow/LA2.png';
 
 const Landing = ({ restaurant, sections }) => {
   const history = useHistory();
