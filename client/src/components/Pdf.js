@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Button } from 'reactstrap';
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import back2 from '../assets/img/LeftArrow/LA2.png';
 import { primaryColor } from '../primaryColor';

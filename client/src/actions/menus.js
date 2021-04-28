@@ -5,8 +5,11 @@ import { GET_MENU, SET_ACTIVE_SECTION } from './types';
 export const getMenu = (url) => async (dispatch) => {
   try {
     const restaurant_id = url.split(':').pop();
-    const body = { restaurant_id: 'o0wz8aizx2ax' };
+    const body = { restaurant_id: restaurant_id };
     const res = await api.post('/menus/get_menu', body);
+    if (!res.data) {
+      return;
+    }
     dispatch({
       type: GET_MENU,
       payload: res.data,

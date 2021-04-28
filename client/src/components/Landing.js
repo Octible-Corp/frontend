@@ -22,12 +22,12 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
     (async () => {
       if (!loaded || !restaurant.hasOwnProperty('user_id')) {
         setLoading(true);
+        await getMenu(url);
         const t1 = Date.now();
         const diff = t1 - t0;
         if (diff < 1000) {
           await sleep(700);
         }
-        await getMenu(url);
         setLoading(false);
       }
     })();
@@ -36,7 +36,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
   return (
     <Fragment>
       <body>
-        {loading ? (
+        {loading || !restaurant.hasOwnProperty('user_id') ? (
           <>
             <div
               id='Octible-app'
