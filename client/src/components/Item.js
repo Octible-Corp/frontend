@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FoodCard from './FoodCard';
+import { Row, Col, Button } from 'reactstrap';
 import { useParams, useHistory } from 'react-router-dom';
-import { Button, Row } from 'reactstrap';
+import PropTypes from 'prop-types';
 import back2 from '../assets/img/LeftArrow/LA2.png';
 import { primaryColor } from '../primaryColor';
 
-const Landing = ({ restaurant, sections }) => {
+const Item = ({ items, index }) => {
   const history = useHistory();
-  const [items, setItems] = useState([]);
-  const [name, setName] = useState('');
-  const { section_id } = useParams();
+  const { item_id } = useParams();
+  const [item, setItem] = useState({});
   useEffect(() => {
-    const section = section_id.substring(1);
-    let placeholder = restaurant.items.filter(
-      (item) => item.section_id === section
-    );
-    let raw_section_name = sections.find((sec) => sec.section_id === section);
-    setName(raw_section_name.section);
-    setItems(placeholder);
+    let found_item = items.find((i) => i.item_id === item_id.substring(1));
+    setItem(found_item);
   }, []);
 
   return (
@@ -37,9 +30,7 @@ const Landing = ({ restaurant, sections }) => {
         }}
       >
         <Button
-          onClick={() => {
-            history.goBack();
-          }}
+          onClick={() => history.goBack()}
           style={{
             backgroundColor: 'transparent',
             borderColor: 'transparent',
@@ -67,6 +58,7 @@ const Landing = ({ restaurant, sections }) => {
                 height: 35,
               }}
             />
+
             <h1
               style={{
                 position: 'fixed',
@@ -77,7 +69,7 @@ const Landing = ({ restaurant, sections }) => {
                 color: primaryColor,
               }}
             >
-              {name}
+              Go Back
             </h1>
           </Row>
         </Button>
@@ -88,15 +80,68 @@ const Landing = ({ restaurant, sections }) => {
           paddingTop: 90,
           top: 0,
           width: '100%',
-          height: 80,
+
           background: 'white',
-          textAlign: 'center',
-          alignItems: 'center',
         }}
       >
-        {items.map((item, index) => (
-          <FoodCard item={item} key={index}></FoodCard>
-        ))}
+        <Col>
+          <Row style={{ marginTop: 15 }}>
+            <Col>
+              <p
+                style={{
+                  textAlign: 'left',
+                  fontFamily: 'Helvetica',
+                  fontWeight: 'bold',
+                  textTransform: 'capitalize',
+                  marginLeft: 11,
+                }}
+              >
+                {item.title}
+              </p>
+            </Col>
+            <Col>
+              <p
+                style={{
+                  textAlign: 'right',
+                  fontFamily: 'Helvetica',
+                  fontWeight: 'bold',
+                  textTransform: 'capitalize',
+                  marginRight: 15,
+                }}
+              >
+                {item.price}
+              </p>
+            </Col>
+          </Row>
+          <Row>
+            <p style={{ alignText: 'right', marginLeft: 30, marginTop: -10 }}>
+              {item.description}
+            </p>
+          </Row>
+          <Row
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: -20,
+            }}
+          >
+            {item.item_photos?.map((it) => (
+              <img
+                style={{
+                  borderRadius: 30,
+                  marginTop: 30,
+                  width: '85%',
+                  height: 'auto',
+                  alignSelf: 'center',
+                }}
+                src={it.url}
+                class='img-fluid'
+                alt='Responsive image'
+              />
+            ))}
+          </Row>
+        </Col>
       </div>
       <div
         color='info'
@@ -125,14 +170,13 @@ const Landing = ({ restaurant, sections }) => {
   );
 };
 
-Landing.propTypes = {
-  sections: PropTypes.array.isRequired,
-  placeholder: PropTypes.array.isRequired,
+Item.propTypes = {
+  item: PropTypes.object.isRequired,
+  items: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  restaurant: state.menus.menu,
-  sections: state.menus.menu.sections,
+const mapStateToProps = (state) => ({
+  items: state.menus.menu.items,
 });
 
-export default connect(mapStateToProps, null)(Landing);
+export default connect(mapStateToProps, null)(Item);

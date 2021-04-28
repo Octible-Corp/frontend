@@ -12,31 +12,36 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import back2 from '../assets/img/LeftArrow/LA2.png';
 
 const FoodCard = ({ item, index }) => {
   return (
     <div
       style={{
-        marginBottom: 25,
+        marginBottom: 30,
+        // justifyContent: 'center',
+        //alignItems: 'center',
       }}
     >
-      <Link to={`/item/:${item.item_id}`}>
+      <Link to={`/items/:${item.section_id}/food/:${item.item_id}`}>
         <Button
           color='secondary'
           type='button'
           style={{
-            borderRadius: 23,
-            width: '90%',
+            borderRadius: 10,
+            width: '95%',
             justifyContent: 'center',
-            minHeight: 80,
+            minHeight: 120,
           }}
         >
           <Row>
-            <Col xs='8'>
+            <Col>
               <CardTitle
                 style={{
-                  width: '100%',
+                  // position: 'absolute',
+                  // top: -20,
+                  // left: 10,
+
+                  width: '90%',
                   textAlign: 'left',
                   fontFamily: 'Helvetica',
                   fontSize: '100%',
@@ -45,6 +50,16 @@ const FoodCard = ({ item, index }) => {
                 }}
               >
                 {item.title}
+                <p1
+                  style={{
+                    fontFamily: 'Helvetica',
+                    fontSize: '100%',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  {' '}
+                  {item.price}
+                </p1>
               </CardTitle>
 
               <CardText
@@ -62,19 +77,19 @@ const FoodCard = ({ item, index }) => {
                 {item.description}
               </CardText>
             </Col>
-            <Col xs='4'>
-              <CardTitle
+            {item.item_photos.length > 0 ? (
+              <CardImg
+                alt='...'
+                src={`${item.item_photos[0]?.url}`}
                 style={{
-                  textAlign: 'right',
-                  fontFamily: 'Helvetica',
-                  fontSize: '100%',
-                  fontWeight: 'bold',
-                  color: 'black',
+                  width: 130,
+                  height: 80,
+                  borderRadius: 15,
+                  margin: 'auto',
+                  marginRight: 10,
                 }}
-              >
-                {item.price}
-              </CardTitle>
-            </Col>
+              />
+            ) : null}
           </Row>
         </Button>
       </Link>

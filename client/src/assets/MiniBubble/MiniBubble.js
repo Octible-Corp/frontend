@@ -7,10 +7,7 @@ import { Button } from 'reactstrap';
 const MiniBubble = ({ text, link }) => {
   return (
     <Fragment>
-      <Button
-        type='button'
-        style={{ borderRadius: '30px', backgroundColor: primaryColor }}
-      >
+      <Button type='button' color='primary' style={{ borderRadius: '30px' }}>
         <a href={`${link}`} style={{ color: 'white' }}>
           {text}
         </a>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MiniBubble from '../assets/MiniBubble/MiniBubble';
 import MenuBubble from '../assets/MenuBubble/MenuBubble';
-import { Row } from 'reactstrap';
+import { Row, Button } from 'reactstrap';
 import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getMenu } from '../actions/menus';
@@ -76,6 +76,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
                 style={{
                   maxWidth: '100%',
                   zIndex: 0,
+                  boxShadow: '1px 1px 1px #9E9E9E',
                 }}
                 src={`${url}${restaurant.background_photo}`}
               />
@@ -92,37 +93,51 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
                   alignItems: 'center',
                   border: '2.5px solid blue',
                   borderWidth: 3,
+                  boxShadow: '2px 2px 2px #9E9E9E',
                 }}
                 src={`${url}${restaurant.logo_photo}`}
-              ></Image>
+              />
 
               <p1
                 style={{
                   position: 'relative',
                   bottom: 30,
+                  fontFamily: 'helvetica',
+                  fontWeight: 'bold',
+                  color: 'black',
                   fontSize: '350%',
                 }}
               >
-                {restaurant.restaurant}
+                {restaurant.name}
               </p1>
               <Row
                 style={{ position: 'relative', bottom: 20, marginBottom: -10 }}
               >
-                <MiniBubble
-                  text={'website'}
-                  link={`${restaurant.website}`}
-                ></MiniBubble>
-                <MiniBubble text={'PDF Menu'} link={null}></MiniBubble>
+                <MiniBubble text={'website'} link={`${restaurant.website}`} />
+                <MiniBubble text={'PDF Menu'} link={null} />
               </Row>
 
-              <p2 style={{ marginBottom: 10 }}>Digital Menu</p2>
+              <p2
+                style={{
+                  marginBottom: 10,
+                  marginTop: 30,
+                  fontFamily: 'helvetica',
+                  fontSize: 20,
+                  color: '#5A5A5A',
+                }}
+              >
+                Digital Menu
+              </p2>
 
               {sections.map((section) => (
                 <Link
                   to={`/items/:${section.section_id}`}
                   id={section.section_id}
                 >
-                  <MenuBubble text={`${section.section}`}></MenuBubble>
+                  <MenuBubble
+                    section_id={section.section_id}
+                    text={`${section.section}`}
+                  />
                 </Link>
               ))}
               <div style={{ height: 200 }}></div>
