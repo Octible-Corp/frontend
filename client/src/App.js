@@ -4,6 +4,7 @@ import Landing from './components/Landing.js';
 import Items from './components/Items.js';
 import Item from './components/Item.js';
 import Food from './components/Food.js';
+import Pdf from './components/Pdf.js';
 import { Provider } from 'react-redux';
 import store from './store';
 import './assets/css/argon-design-system-react.css';
@@ -23,6 +24,7 @@ const App = () => {
               path='/items/:section_id/food/:food_id'
               component={Food}
             />
+            <Route exact path='/pdf/photos' component={Pdf} />
           </Switch>
         </Fragment>
       </Router>

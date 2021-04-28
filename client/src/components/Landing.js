@@ -114,7 +114,15 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
                 style={{ position: 'relative', bottom: 20, marginBottom: -10 }}
               >
                 <MiniBubble text={'website'} link={`${restaurant.website}`} />
-                <MiniBubble text={'PDF Menu'} link={null} />
+                <Link to={'/pdf/photos'}>
+                  <Button
+                    type='button'
+                    color='primary'
+                    style={{ borderRadius: '30px' }}
+                  >
+                    <a>Pdf Menu</a>
+                  </Button>
+                </Link>
               </Row>
 
               <p2
