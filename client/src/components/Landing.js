@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MiniBubble from '../assets/MiniBubble/MiniBubble';
 import MenuBubble from '../assets/MenuBubble/MenuBubble';
-import { Row, Button } from 'reactstrap';
+import { Row, Button, Col } from 'reactstrap';
 import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getMenu } from '../actions/menus';
@@ -113,16 +113,32 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
               <Row
                 style={{ position: 'relative', bottom: 20, marginBottom: -10 }}
               >
-                <MiniBubble text={'website'} link={`${restaurant.website}`} />
-                <Link to={'/pdf/photos'}>
+                {' '}
+                <Col>
                   <Button
                     type='button'
                     color='primary'
-                    style={{ borderRadius: '30px' }}
+                    style={{ borderRadius: '30px', width: 120 }}
                   >
-                    <a>Pdf Menu</a>
+                    <a
+                      style={{ textDecoration: 'none', color: 'white' }}
+                      href='https://www.google.com'
+                    >
+                      Website
+                    </a>
                   </Button>
-                </Link>
+                </Col>
+                <Col>
+                  <Link to={'/pdf/photos'}>
+                    <Button
+                      type='button'
+                      color='primary'
+                      style={{ borderRadius: '30px', width: 120 }}
+                    >
+                      <a>Pdf </a>
+                    </Button>
+                  </Link>
+                </Col>
               </Row>
 
               <p2

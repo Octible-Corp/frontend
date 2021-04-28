@@ -21,7 +21,6 @@ const Pdf = ({ photos }) => {
           background: 'white',
           textAlign: 'left',
           marginLeft: 20,
-          zIndex: 5,
         }}
       >
         <Button
@@ -68,7 +67,7 @@ const Pdf = ({ photos }) => {
       </div>
       <div
         style={{
-          marginTop: 100,
+          marginTop: 90,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -77,7 +76,7 @@ const Pdf = ({ photos }) => {
         <Col>
           {photos.map((photo) => (
             <img
-              style={{ width: '100%', height: 'auto', marginLeft: 5 }}
+              style={{ width: '100%', height: 'auto', marginTop: 20 }}
               src={`${pre_url}${photo}`}
             />
           ))}
