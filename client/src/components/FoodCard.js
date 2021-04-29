@@ -1,24 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  Card,
-  CardBody,
-  CardImg,
-  CardTitle,
-  CardText,
-  Row,
-  Col,
-  Button,
-} from 'reactstrap';
+import { CardTitle, CardText, Row, Col, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { buttonColor } from '../primaryColor';
 
-const FoodCard = ({ item, index }) => {
+const FoodCard = ({ item }) => {
   return (
     <div
       style={{
-        marginBottom: 25,
+        marginBottom: 20,
       }}
     >
       <Link to={`/item/:${item.item_id}`}>
@@ -66,6 +57,7 @@ const FoodCard = ({ item, index }) => {
               style={{
                 marginTop: -15,
                 marginLeft: 15,
+                marginRight: 10,
                 textAlign: 'left',
                 fontFamily: 'Helvetica',
                 fontSize: '90%',

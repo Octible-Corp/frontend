@@ -30,7 +30,6 @@ const Landing = ({ restaurant, sections }) => {
           marginTop: 10,
           flexDirection: 'column',
           width: 'inherit',
-          height: 'auto',
         }}
       >
         <h1
@@ -39,6 +38,7 @@ const Landing = ({ restaurant, sections }) => {
             textTransform: 'capitalize',
             fontFamily: 'helvetica',
             color: primaryColor,
+            marginLeft: 15,
             alignSelf: 'center',
           }}
         >
@@ -48,37 +48,54 @@ const Landing = ({ restaurant, sections }) => {
 
       <div
         style={{
-          marginTop: 8,
+          marginTop: 5,
           background: 'white',
           textAlign: 'center',
+          overflow: 'hidden',
         }}
       >
         {items.map((item, index) => (
           <FoodCard item={item} key={index}></FoodCard>
         ))}
       </div>
-      <div style={{ height: 20, backgroundColor: 'red' }}></div>
-      {/**  <div
+      <div
         style={{
+          bottom: 0,
+          left: 0,
+          right: 0,
+          marginBottom: 0,
           position: 'fixed',
-          padding: 20,
-          bottom: -1,
-          width: '100%',
           backgroundColor: '#F8F8F8',
+          borderTopRightRadius: 40,
+          borderTopLeftRadius: 40,
           height: 90,
-          textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
-        <i
-          style={{ width: 200, height: 200, color: primaryColor }}
-          class='fa fa-home fa-3x'
-          aria-hidden='true'
-        />
-      </div>*/}
+        <Button
+          style={{
+            backgroundColor: 'transparent',
+            borderColor: 'transparent',
+            WebkitBoxShadow: 'none',
+          }}
+          onClick={() => history.goBack()}
+        >
+          <i
+            style={{
+              marginTop: 13,
+              color: primaryColor,
+              alignSelf: 'center',
+            }}
+            class='fa fa-home fa-3x'
+            aria-hidden='true'
+          />
+        </Button>
+      </div>
     </Fragment>
   );
 };
-// backgroundColor: '#F8F8F8',
+
 Landing.propTypes = {
   sections: PropTypes.array.isRequired,
   placeholder: PropTypes.array.isRequired,
@@ -90,40 +107,3 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 export default connect(mapStateToProps, null)(Landing);
-
-/*
- <Button
-          onClick={() => {
-            history.goBack();
-          }}
-          style={{
-            backgroundColor: 'transparent',
-            borderColor: 'transparent',
-            shadowColor: '#636c73',
-            shadowRadius: 0,
-            shadowOpacity: 0.0,
-            boxShadow: `0px 0px 0px #DCDCDC`,
-            marginBottom: 10,
-            marginTop: 0,
-            width: 'inherit',
-          }}
-        >
-          <Row
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-            }}
-          >
-            <h1
-              style={{
-                textTransform: 'capitalize',
-                fontFamily: 'helvetica',
-                color: primaryColor,
-                alignSelf: 'center',
-              }}
-            >
-              {name}
-            </h1>
-          </Row>
-        </Button>
-*/

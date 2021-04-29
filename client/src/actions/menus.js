@@ -4,8 +4,9 @@ import { GET_MENU, SET_ACTIVE_SECTION } from './types';
 // Get Menus
 export const getMenu = (url) => async (dispatch) => {
   try {
-    const restaurant_id = url.split(':').pop();
-    const body = { restaurant_id: restaurant_id };
+    const dba_id = url.split(':').pop();
+    console.log(dba_id);
+    const body = { dba_id: dba_id };
     const res = await api.post('/menus/get_menu', body);
     if (!res.data) {
       return;

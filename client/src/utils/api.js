@@ -1,9 +1,9 @@
 import axios from 'axios';
 const localhost = 'localhost:5000';
-const serverIP = 'e63b8148c06d.ngrok.io';
+const serverIP = '54.176.187.141';
 
 const api = axios.create({
-  baseURL: `http://${localhost}/`,
+  baseURL: `http://${serverIP}/`,
   headers: {
     'Content-Type': 'application/json',
   },

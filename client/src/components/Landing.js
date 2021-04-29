@@ -51,7 +51,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
             >
               <div
                 style={{ width: 100, height: 100, marginTop: 350 }}
-                class='spinner-border text-primary'
+                className='spinner-border text-primary'
                 role='status'
               />
             </div>
@@ -179,30 +179,29 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
               ))}
               <div style={{ height: 200 }}></div>
             </div>
+            <div
+              color='info'
+              //type='div'
+              style={{
+                paddingTop: 20,
+                width: '100%',
+                borderTopRightRadius: 25,
+                borderTopLeftRadius: 25,
+                height: 60,
+                background: '#4C9AFF',
+                textAlign: 'center',
+              }}
+            >
+              <p1
+                style={{
+                  color: 'white',
+                }}
+              >
+                Powered by Octible
+              </p1>
+            </div>
           </>
         )}
-
-        <div
-          color='info'
-          //type='div'
-          style={{
-            paddingTop: 20,
-            width: '100%',
-            borderTopRightRadius: 25,
-            borderTopLeftRadius: 25,
-            height: 60,
-            background: '#4C9AFF',
-            textAlign: 'center',
-          }}
-        >
-          <p1
-            style={{
-              color: 'white',
-            }}
-          >
-            Powered by Octible
-          </p1>
-        </div>
       </body>
     </Fragment>
   );
