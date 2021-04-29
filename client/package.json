@@ -1,7 +1,6 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "homepage": "http://octiblemobile.s3-website-us-west-1.amazonaws.com/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.12.1",

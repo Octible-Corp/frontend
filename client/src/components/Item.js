@@ -25,7 +25,6 @@ const Item = ({ items, index }) => {
           height: 70,
           background: 'white',
           textAlign: 'left',
-          marginLeft: 20,
           zIndex: 5,
         }}
       >
@@ -43,17 +42,21 @@ const Item = ({ items, index }) => {
             //float: 'left',
             //marginRight: 68,
 
-            width: 300,
+            width: 'inherit',
           }}
         >
-          <Row>
+          <Row
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
             <img
               src={back2}
               style={{
-                marginLeft: 1,
-                marginTop: 20,
-                alignText: 'left',
-                alignSelf: 'left',
+                alignSelf: 'flex-start',
+                marginLeft: 15,
+                marginTop: 15,
                 width: 20,
                 height: 35,
               }}
@@ -61,12 +64,11 @@ const Item = ({ items, index }) => {
 
             <h1
               style={{
-                position: 'fixed',
-                left: 50,
-                top: 22,
+                marginTop: -45,
                 textTransform: 'capitalize',
                 fontFamily: 'helvetica',
                 color: primaryColor,
+                alignSelf: 'center',
               }}
             >
               Go Back

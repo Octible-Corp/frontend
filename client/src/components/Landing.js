@@ -6,6 +6,7 @@ import { Row, Button, Col } from 'reactstrap';
 import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getMenu } from '../actions/menus';
+import { primaryColor } from '../primaryColor';
 
 const sleep = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -90,13 +91,12 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
                   //left: '40%',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  border: '2.5px solid blue',
+                  border: `2.5px solid ${primaryColor}`,
                   borderWidth: 3,
                   boxShadow: '2px 2px 2px #9E9E9E',
                 }}
                 src={`${url}${restaurant.logo_photo}`}
               />
-
               <p1
                 style={{
                   position: 'relative',
@@ -104,7 +104,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
                   fontFamily: 'helvetica',
                   fontWeight: 'bold',
                   color: 'black',
-                  fontSize: '350%',
+                  fontSize: 55,
                 }}
               >
                 {restaurant.name}
@@ -112,15 +112,22 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
               <Row
                 style={{ position: 'relative', bottom: 20, marginBottom: -10 }}
               >
-                {' '}
                 <Col>
                   <Button
                     type='button'
-                    color='primary'
-                    style={{ borderRadius: '30px', width: 120 }}
+                    style={{
+                      borderRadius: '30px',
+                      width: 120,
+                      backgroundColor: primaryColor,
+                      borderColor: primaryColor,
+                    }}
                   >
                     <a
-                      style={{ textDecoration: 'none', color: 'white' }}
+                      style={{
+                        textDecoration: 'none',
+                        color: 'white',
+                        fontFamily: 'helvetica',
+                      }}
                       href='https://www.google.com'
                     >
                       Website
@@ -131,10 +138,17 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
                   <Link to={'/pdf/photos'}>
                     <Button
                       type='button'
-                      color='primary'
-                      style={{ borderRadius: '30px', width: 120 }}
+                      style={{
+                        borderRadius: '30px',
+                        width: 120,
+                        fontFamily: 'helvetica',
+                        backgroundColor: primaryColor,
+                        borderColor: primaryColor,
+                      }}
                     >
-                      <a>Pdf </a>
+                      <a style={{ color: 'white', fontFamily: 'helvetica' }}>
+                        Pdf
+                      </a>
                     </Button>
                   </Link>
                 </Col>
@@ -172,15 +186,13 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
           color='info'
           //type='div'
           style={{
-            position: 'fixed',
-            padding: 20,
-            bottom: -75,
+            paddingTop: 20,
             width: '100%',
-            borderRadius: 25,
-            height: 150,
+            borderTopRightRadius: 25,
+            borderTopLeftRadius: 25,
+            height: 60,
             background: '#4C9AFF',
             textAlign: 'center',
-            zIndex: 5,
           }}
         >
           <p1

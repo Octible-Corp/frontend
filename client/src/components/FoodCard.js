@@ -12,7 +12,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import back2 from '../assets/img/LeftArrow/LA2.png';
+import { buttonColor } from '../primaryColor';
 
 const FoodCard = ({ item, index }) => {
   return (
@@ -23,13 +23,13 @@ const FoodCard = ({ item, index }) => {
     >
       <Link to={`/item/:${item.item_id}`}>
         <Button
-          color='secondary'
           type='button'
           style={{
             borderRadius: 23,
             width: '90%',
-            justifyContent: 'center',
             minHeight: 80,
+            backgroundColor: buttonColor,
+            borderColor: buttonColor,
           }}
         >
           <Row>
@@ -46,21 +46,6 @@ const FoodCard = ({ item, index }) => {
               >
                 {item.title}
               </CardTitle>
-
-              <CardText
-                style={{
-                  marginTop: -15,
-                  width: '90%',
-                  textAlign: 'left',
-                  fontFamily: 'Helvetica',
-                  fontSize: '90%',
-                  textTransform: 'capitalize',
-                  lineHeight: 1.3,
-                  color: 'grey',
-                }}
-              >
-                {item.description}
-              </CardText>
             </Col>
             <Col xs='4'>
               <CardTitle
@@ -75,6 +60,22 @@ const FoodCard = ({ item, index }) => {
                 {item.price}
               </CardTitle>
             </Col>
+          </Row>
+          <Row>
+            <CardText
+              style={{
+                marginTop: -15,
+                marginLeft: 15,
+                textAlign: 'left',
+                fontFamily: 'Helvetica',
+                fontSize: '90%',
+                textTransform: 'capitalize',
+                lineHeight: 1.3,
+                color: 'grey',
+              }}
+            >
+              {item.description}
+            </CardText>
           </Row>
         </Button>
       </Link>
