@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Button } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
@@ -11,63 +11,9 @@ const pre_url = 'https://octible.s3.us-east-2.amazonaws.com/';
 const Pdf = ({ photos }) => {
   const history = useHistory();
   return (
-    <body>
+    <Fragment>
       <div
         style={{
-          position: 'fixed',
-          top: 0,
-          width: '100%',
-          height: 70,
-          background: 'white',
-          textAlign: 'left',
-          marginLeft: 20,
-        }}
-      >
-        <Button
-          onClick={() => history.goBack()}
-          style={{
-            backgroundColor: 'transparent',
-            borderColor: 'transparent',
-            shadowColor: '#636c73',
-            shadowRadius: 0,
-            shadowOpacity: 0.0,
-            boxShadow: `0px 0px 0px #DCDCDC`,
-            marginBottom: 10,
-            marginTop: 0,
-            width: 300,
-          }}
-        >
-          <Row>
-            <img
-              src={back2}
-              style={{
-                marginLeft: 1,
-                marginTop: 20,
-                alignText: 'left',
-                alignSelf: 'left',
-                width: 20,
-                height: 35,
-              }}
-            />
-
-            <h1
-              style={{
-                position: 'fixed',
-                left: 50,
-                top: 22,
-                textTransform: 'capitalize',
-                fontFamily: 'helvetica',
-                color: primaryColor,
-              }}
-            >
-              Go Back
-            </h1>
-          </Row>
-        </Button>
-      </div>
-      <div
-        style={{
-          marginTop: 90,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -80,32 +26,43 @@ const Pdf = ({ photos }) => {
               src={`${pre_url}${photo}`}
             />
           ))}
+          <div style={{ height: 100 }} />
         </Col>
       </div>
       <div
-        color='info'
-        //type='div'
         style={{
+          bottom: 0,
+          left: 0,
+          right: 0,
+          marginBottom: 0,
           position: 'fixed',
-          padding: 20,
-          bottom: -75,
-          width: '100%',
-          borderRadius: 25,
-          height: 150,
-          background: '#4C9AFF',
-          textAlign: 'center',
-          zIndex: 5,
+          backgroundColor: '#F8F8F8',
+          borderTopRightRadius: 40,
+          borderTopLeftRadius: 40,
+          height: 60,
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
-        <p1
+        <Button
           style={{
-            color: 'white',
+            backgroundColor: 'transparent',
+            borderColor: 'transparent',
+            WebkitBoxShadow: 'none',
           }}
+          onClick={() => history.goBack()}
         >
-          Powered by Octible
-        </p1>
+          <i
+            style={{
+              color: primaryColor,
+              alignSelf: 'center',
+            }}
+            class='fa fa-home fa-3x'
+            aria-hidden='true'
+          />
+        </Button>
       </div>
-    </body>
+    </Fragment>
   );
 };
 
