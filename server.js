@@ -19,6 +19,9 @@ app.use(express.json());
 //Main
 app.use('/', require('./api/Menus'));
 
+//Maintenance
+app.use('/maintenance', require('./api/Maintenance'));
+
 //Listen on port 5000 (local) or env.PORT for (production)
 const PORT = process.env.PORT || 5000;
 

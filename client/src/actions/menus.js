@@ -5,7 +5,6 @@ import { GET_MENU, SET_ACTIVE_SECTION } from './types';
 export const getMenu = (url) => async (dispatch) => {
   try {
     const dba_id = url.split(':').pop();
-    console.log(dba_id);
     const body = { dba_id: dba_id };
     const res = await api.post('/menus/get_menu', body);
     if (!res.data) {
