@@ -27,7 +27,7 @@ const Landing = ({ restaurant, sections }) => {
       <div
         style={{
           display: 'flex',
-          marginTop: 10,
+          marginTop: 20,
           flexDirection: 'column',
           width: 'inherit',
         }}
@@ -37,9 +37,10 @@ const Landing = ({ restaurant, sections }) => {
             marginTop: 10,
             textTransform: 'capitalize',
             fontFamily: 'helvetica',
+            fontWeight: 'bold',
             color: primaryColor,
-            marginLeft: 15,
-            alignSelf: 'center',
+            marginLeft: 35,
+            fontSize: 40,
           }}
         >
           {name}
@@ -57,6 +58,7 @@ const Landing = ({ restaurant, sections }) => {
         {items.map((item, index) => (
           <FoodCard item={item} key={index}></FoodCard>
         ))}
+        <div style={{ height: 150 }} />
       </div>
       <div
         style={{
@@ -68,7 +70,7 @@ const Landing = ({ restaurant, sections }) => {
           backgroundColor: '#F8F8F8',
           borderTopRightRadius: 40,
           borderTopLeftRadius: 40,
-          height: 90,
+          height: 60,
           display: 'flex',
           flexDirection: 'column',
         }}
@@ -83,7 +85,6 @@ const Landing = ({ restaurant, sections }) => {
         >
           <i
             style={{
-              marginTop: 13,
               color: primaryColor,
               alignSelf: 'center',
             }}

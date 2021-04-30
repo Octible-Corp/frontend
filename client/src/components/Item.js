@@ -20,129 +20,135 @@ const Item = ({ items, sections }) => {
 
   return (
     <Fragment>
-      <div
-        style={{
-          display: 'flex',
-          marginTop: 20,
-          flexDirection: 'column',
-          width: 'inherit',
-        }}
-      >
-        <h1
-          style={{
-            marginTop: 10,
-            textTransform: 'capitalize',
-            fontFamily: 'helvetica',
-            fontWeight: 'bold',
-            color: primaryColor,
-            marginLeft: 25,
-            fontSize: 40,
-          }}
-        >
-          {name}
-        </h1>
-      </div>
-
-      <Col>
-        <Row style={{ marginTop: 5 }}>
-          <Col xs='8'>
-            <p
-              style={{
-                textAlign: 'left',
-                fontFamily: 'Helvetica',
-                fontWeight: 'bold',
-                textTransform: 'capitalize',
-                marginLeft: 11,
-                fontSize: 17,
-              }}
-            >
-              {item.title}
-            </p>
-          </Col>
-          <Col xs='4'>
-            <p
-              style={{
-                textAlign: 'right',
-                fontFamily: 'Helvetica',
-                fontWeight: 'bold',
-                textTransform: 'capitalize',
-                marginRight: 15,
-              }}
-            >
-              {item.price}
-            </p>
-          </Col>
-        </Row>
-        <Row>
-          <p
-            style={{
-              alignText: 'right',
-              marginLeft: 27,
-              marginTop: 3,
-              marginRight: 25,
-            }}
-          >
-            {item.description}
-          </p>
-        </Row>
-        <Row
+      <div style={{}}>
+        <div
           style={{
             display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: -20,
+            marginTop: 20,
+            flexDirection: 'column',
+            width: 'inherit',
           }}
         >
-          {item.item_photos?.map((it) => (
-            <img
+          <h1
+            style={{
+              marginTop: 10,
+              textTransform: 'capitalize',
+              fontFamily: 'helvetica',
+              fontWeight: 'bold',
+              color: primaryColor,
+              marginLeft: 35,
+              fontSize: 40,
+            }}
+          >
+            {name}
+          </h1>
+        </div>
+
+        <Col>
+          <Row style={{ marginTop: 15 }}>
+            <Col xs='8'>
+              <p
+                style={{
+                  textAlign: 'left',
+                  fontFamily: 'Helvetica',
+                  fontWeight: 'bold',
+                  textTransform: 'capitalize',
+                  marginLeft: 21,
+                  color: 'black',
+                  fontSize: 14,
+                }}
+              >
+                {item.title}
+              </p>
+            </Col>
+            <Col xs='4'>
+              <p
+                style={{
+                  textAlign: 'right',
+                  fontFamily: 'Helvetica',
+                  fontWeight: 'bold',
+                  textTransform: 'capitalize',
+                  marginRight: 15,
+                  color: 'black',
+                  fontSize: 14,
+                }}
+              >
+                {item.price}
+              </p>
+            </Col>
+          </Row>
+          <Row>
+            <p
               style={{
-                borderRadius: 30,
-                marginTop: 30,
-                width: '85%',
-                height: 'auto',
+                alignText: 'right',
+                marginLeft: 35,
+                marginTop: 3,
+                marginRight: 25,
+              }}
+            >
+              {item.description}
+            </p>
+          </Row>
+          <Row
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: -20,
+            }}
+          >
+            {item.item_photos?.map((it) => (
+              <img
+                style={{
+                  borderRadius: 30,
+                  marginTop: 30,
+                  width: '85%',
+                  height: 'auto',
+                  alignSelf: 'center',
+                }}
+                src={it.url}
+                class='img-fluid'
+                alt='Responsive image'
+              />
+            ))}
+          </Row>
+          <div style={{ height: 100 }} />
+        </Col>
+      </div>
+      <div>
+        <div
+          style={{
+            bottom: 0,
+            left: 0,
+            right: 0,
+            marginBottom: 0,
+            position: 'fixed',
+            backgroundColor: '#F8F8F8',
+            borderTopRightRadius: 40,
+            borderTopLeftRadius: 40,
+            height: 60,
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <Button
+            style={{
+              backgroundColor: 'transparent',
+              borderColor: 'transparent',
+              WebkitBoxShadow: 'none',
+            }}
+            onClick={() => history.goBack()}
+          >
+            <i
+              style={{
+                color: primaryColor,
                 alignSelf: 'center',
               }}
-              src={it.url}
-              class='img-fluid'
-              alt='Responsive image'
+              class='fa fa-home fa-3x'
+              aria-hidden='true'
             />
-          ))}
-        </Row>
-      </Col>
-
-      <div
-        style={{
-          bottom: 0,
-          left: 0,
-          right: 0,
-          marginBottom: 0,
-          position: 'fixed',
-          backgroundColor: '#F8F8F8',
-          borderTopRightRadius: 40,
-          borderTopLeftRadius: 40,
-          height: 90,
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-        <Button
-          style={{
-            backgroundColor: 'transparent',
-            borderColor: 'transparent',
-            WebkitBoxShadow: 'none',
-          }}
-          onClick={() => history.goBack()}
-        >
-          <i
-            style={{
-              marginTop: 13,
-              color: primaryColor,
-              alignSelf: 'center',
-            }}
-            class='fa fa-home fa-3x'
-            aria-hidden='true'
-          />
-        </Button>
+          </Button>
+        </div>
       </div>
     </Fragment>
   );
