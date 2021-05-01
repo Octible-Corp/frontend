@@ -19,13 +19,13 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
   const t0 = Date.now();
 
   useEffect(() => {
-    const url = window.location.href;
-    console.log('---URL---');
-    console.log(url);
+    const api_url = window.location.href;
+    console.log('---API_URL---');
+    console.log(api_url);
     (async () => {
       if (!loaded || !restaurant.hasOwnProperty('user_id')) {
         setLoading(true);
-        await getMenu(url);
+        await getMenu(api_url);
         const t1 = Date.now();
         const diff = t1 - t0;
         if (diff < 1000) {
