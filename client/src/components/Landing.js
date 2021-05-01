@@ -20,6 +20,8 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
 
   useEffect(() => {
     const url = window.location.href;
+    console.log('---URL---');
+    console.log(url);
     (async () => {
       if (!loaded || !restaurant.hasOwnProperty('user_id')) {
         setLoading(true);
