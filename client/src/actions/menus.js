@@ -9,6 +9,8 @@ export const getMenu = (url) => async (dispatch) => {
     console.log('---API CALL URL');
     console.log(dba_id);
     const res = await api.post('/menus/get_menu', body);
+    console.log('---RES---');
+    console.log(res);
     if (!res.data) {
       return;
     }
@@ -17,6 +19,8 @@ export const getMenu = (url) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
+    console.log('--GET MENU ERROR---');
+    console.log(err);
     throw new Error(err);
   }
 };
