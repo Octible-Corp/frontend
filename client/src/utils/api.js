@@ -1,9 +1,9 @@
 import axios from 'axios';
 const localhost = 'localhost:5000';
-const serverIP = '54.241.77.78';
+const serverIP = 'dmlud1ft180u3.cloudfront.net';
 
 const api = axios.create({
-  baseURL: `http://${serverIP}/`,
+  baseURL: `https://${serverIP}/`,
   headers: {
     'Content-Type': 'application/json',
   },
