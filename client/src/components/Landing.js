@@ -7,6 +7,7 @@ import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getMenu } from '../actions/menus';
 import { primaryColor } from '../primaryColor';
+import { preLoadImg } from '../actions/workers';
 
 const sleep = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -15,16 +16,14 @@ const sleep = (ms) => {
 const url = 'https://octible.s3.us-east-2.amazonaws.com/';
 
 const Landing = ({ restaurant, sections, getMenu, loaded }) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [loadingImg, setLoadingImg] = useState(true);
   const t0 = Date.now();
 
   useEffect(() => {
     const api_url = window.location.href;
-    console.log('---API_URL---');
-    console.log(api_url);
     (async () => {
       if (!loaded || !restaurant.hasOwnProperty('user_id')) {
-        setLoading(true);
         await getMenu(api_url);
         const t1 = Date.now();
         const diff = t1 - t0;
@@ -35,6 +34,15 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    if (restaurant.hasOwnProperty('menu_id')) {
+      (async () => {
+        await preLoadImg(restaurant);
+        setLoadingImg(false);
+      })();
+    }
+  }, [restaurant]);
 
   return (
     <Fragment>
@@ -171,6 +179,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
               <Link
                 to={`/items/:${section.section_id}`}
                 id={section.section_id}
+                key={section.section_id}
               >
                 <MenuBubble
                   section_id={section.section_id}
@@ -211,7 +220,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
                   alignSelf: 'center',
                   opacity: 0.7,
                 }}
-                class='fa fa-home fa-3x'
+                className='fa fa-home fa-3x'
                 aria-hidden='true'
               />
             </Button>

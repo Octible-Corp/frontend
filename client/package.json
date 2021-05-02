@@ -17,6 +17,7 @@
     "react-dropzone-uploader": "^2.11.0",
     "react-indiana-drag-scroll": "^1.6.1",
     "react-moment": "^0.9.7",
+    "react-precache-img": "^2.0.5",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^4.0.0",

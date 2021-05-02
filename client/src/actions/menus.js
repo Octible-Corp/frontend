@@ -1,5 +1,6 @@
 import api from '../utils/api';
 import { GET_MENU, SET_ACTIVE_SECTION } from './types';
+import { preLoadImg } from './workers';
 
 // Get Menus
 export const getMenu = (url) => async (dispatch) => {
@@ -14,6 +15,7 @@ export const getMenu = (url) => async (dispatch) => {
     if (!res.data) {
       return;
     }
+    preLoadImg(res.data);
     dispatch({
       type: GET_MENU,
       payload: res.data,
