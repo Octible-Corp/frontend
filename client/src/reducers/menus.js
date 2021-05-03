@@ -1,6 +1,7 @@
 import { GET_MENU, SET_ACTIVE_SECTION } from '../actions/types';
 let initialState = {
   menu: { sections: [], items: [] },
+  dba: { background_color: '' },
   loaded: false,
   active_section_id: '',
 };
@@ -11,7 +12,8 @@ export default function (state = initialState, action) {
     case GET_MENU:
       return {
         ...state,
-        menu: payload,
+        menu: { ...payload.menu, background_photo: '' },
+        dba: payload.dba,
         loaded: true,
       };
     case SET_ACTIVE_SECTION:

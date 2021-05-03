@@ -6,7 +6,6 @@ import { Row, Button, Col } from 'reactstrap';
 import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getMenu } from '../actions/menus';
-import { primaryColor } from '../primaryColor';
 import { preLoadImg } from '../actions/workers';
 
 const sleep = (ms) => {
@@ -15,7 +14,7 @@ const sleep = (ms) => {
 
 const url = 'https://octible.s3.us-east-2.amazonaws.com/';
 
-const Landing = ({ restaurant, sections, getMenu, loaded }) => {
+const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
   const [loading, setLoading] = useState(true);
   const [loadingImg, setLoadingImg] = useState(true);
   const t0 = Date.now();
@@ -43,7 +42,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
       })();
     }
   }, [restaurant]);
-
+  //loading || !restaurant.hasOwnProperty('user_id')
   return (
     <Fragment>
       {loading || !restaurant.hasOwnProperty('user_id') ? (
@@ -81,32 +80,44 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
               marginBottom: 0,
             }}
           >
-            <Image
-              style={{
-                maxWidth: '100%',
-                zIndex: 0,
-                boxShadow: '1px 1px 1px #9E9E9E',
-              }}
-              src={`${url}${restaurant.background_photo}`}
-            />
-            <Image
-              style={{
-                height: 100,
-                width: 100,
-                zindex: 10,
-                borderRadius: 100 / 2,
-                position: 'relative',
-                bottom: 40,
-                //left: '40%',
-                justifyContent: 'center',
-                alignItems: 'center',
-                border: `2.5px solid ${primaryColor}`,
-                borderWidth: 3,
-                boxShadow: '2px 2px 2px #9E9E9E',
-              }}
-              src={`${url}${restaurant.logo_photo}`}
-            />
-            <p1
+            {loadingImg ? (
+              <div style={{ height: 100, width: '100%' }} />
+            ) : (
+              <>
+                {restaurant.background_photo ? (
+                  <Image
+                    style={{
+                      maxWidth: '100%',
+                      zIndex: 0,
+                      boxShadow: '1px 1px 1px #9E9E9E',
+                    }}
+                    src={`${url}${restaurant.background_photo}`}
+                  />
+                ) : (
+                  <div style={{ height: 100, width: '100%' }} />
+                )}
+
+                <Image
+                  style={{
+                    height: 100,
+                    width: 100,
+                    zindex: 10,
+                    borderRadius: 100 / 2,
+                    position: 'relative',
+                    bottom: 40,
+                    //left: '40%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    border: `2.5px solid ${dba.primary_color}`,
+                    borderWidth: 3,
+                    boxShadow: '2px 2px 2px #9E9E9E',
+                  }}
+                  src={`${url}${restaurant.logo_photo}`}
+                />
+              </>
+            )}
+
+            <p
               style={{
                 position: 'relative',
                 bottom: 30,
@@ -117,7 +128,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
               }}
             >
               {restaurant.name}
-            </p1>
+            </p>
             <Row
               style={{ position: 'relative', bottom: 20, marginBottom: -10 }}
             >
@@ -127,8 +138,8 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
                   style={{
                     borderRadius: '30px',
                     width: 120,
-                    backgroundColor: primaryColor,
-                    borderColor: primaryColor,
+                    backgroundColor: dba.primary_color,
+                    borderColor: dba.primary_color,
                   }}
                 >
                   <a
@@ -151,8 +162,8 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
                       borderRadius: '30px',
                       width: 120,
                       fontFamily: 'helvetica',
-                      backgroundColor: primaryColor,
-                      borderColor: primaryColor,
+                      backgroundColor: dba.primary_color,
+                      borderColor: dba.primary_color,
                     }}
                   >
                     <a style={{ color: 'white', fontFamily: 'helvetica' }}>
@@ -163,7 +174,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
               </Col>
             </Row>
 
-            <p2
+            <p
               style={{
                 marginBottom: 10,
                 marginTop: 30,
@@ -173,7 +184,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
               }}
             >
               Digital Menu
-            </p2>
+            </p>
 
             {sections.map((section) => (
               <Link
@@ -216,7 +227,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded }) => {
             >
               <i
                 style={{
-                  color: primaryColor,
+                  color: dba.primary_color,
                   alignSelf: 'center',
                   opacity: 0.7,
                 }}
@@ -235,11 +246,13 @@ Landing.propTypes = {
   sections: PropTypes.array.isRequired,
   getMenu: PropTypes.func.isRequired,
   loaded: PropTypes.bool.isRequired,
+  dba: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   restaurant: state.menus.menu,
   sections: state.menus.menu.sections,
+  dba: state.menus.dba,
   loaded: state.menus.loaded,
 });
 
