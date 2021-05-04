@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FoodCard from './FoodCard';
 import { useParams, useHistory } from 'react-router-dom';
-import { Button, Row, Col } from 'reactstrap';
-import back2 from '../assets/img/LeftArrow/LA2.png';
+import { Button } from 'reactstrap';
+
 import { buttonColor, primaryColor } from '../primaryColor';
 
-const Landing = ({ restaurant, sections }) => {
+const Landing = ({ restaurant, sections, dba }) => {
   const history = useHistory();
   const [items, setItems] = useState([]);
   const [name, setName] = useState('');
@@ -24,74 +24,78 @@ const Landing = ({ restaurant, sections }) => {
 
   return (
     <Fragment>
-      <div
-        style={{
-          display: 'flex',
-          marginTop: 20,
-          flexDirection: 'column',
-          width: 'inherit',
-        }}
-      >
-        <h1
+      <div style={{ backgroundColor: dba.background_color, height: '100vh' }}>
+        <div
           style={{
-            marginTop: 10,
-            textTransform: 'capitalize',
-            fontFamily: 'helvetica',
-            fontWeight: 'bold',
-            color: primaryColor,
-            marginLeft: 35,
-            fontSize: 40,
+            display: 'flex',
+            flexDirection: 'column',
+            width: 'inherit',
           }}
         >
-          {name}
-        </h1>
-      </div>
-
-      <div
-        style={{
-          marginTop: 5,
-          background: 'white',
-          textAlign: 'center',
-          overflow: 'hidden',
-        }}
-      >
-        {items.map((item, index) => (
-          <FoodCard item={item} key={index}></FoodCard>
-        ))}
-        <div style={{ height: 150 }} />
-      </div>
-      <div
-        style={{
-          bottom: 0,
-          left: 0,
-          right: 0,
-          marginBottom: 0,
-          position: 'fixed',
-          backgroundColor: '#F8F8F8',
-          borderTopRightRadius: 40,
-          borderTopLeftRadius: 40,
-          height: 60,
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-        <Button
-          style={{
-            backgroundColor: 'transparent',
-            borderColor: 'transparent',
-            WebkitBoxShadow: 'none',
-          }}
-          onClick={() => history.goBack()}
-        >
-          <i
+          <h1
             style={{
-              color: primaryColor,
-              alignSelf: 'center',
+              marginTop: 30,
+              textTransform: 'capitalize',
+              fontFamily: 'helvetica',
+              fontWeight: 'bold',
+              color: dba.section_title_color,
+              marginLeft: 35,
+              fontSize: 40,
             }}
-            class='fa fa-home fa-3x'
-            aria-hidden='true'
-          />
-        </Button>
+          >
+            {name}
+          </h1>
+        </div>
+
+        <div
+          style={{
+            backgroundColor: dba.background_color,
+            textAlign: 'center',
+            overflow: 'hidden',
+          }}
+        >
+          {items.map((item, index) => (
+            <>
+              <div
+                style={{ height: 10, backgroundColor: dba.background_color }}
+              />
+              <FoodCard item={item} key={index}></FoodCard>
+            </>
+          ))}
+        </div>
+        <div
+          style={{
+            bottom: 0,
+            left: 0,
+            right: 0,
+            marginBottom: 0,
+            position: 'fixed',
+            backgroundColor: dba.footer_color,
+            borderTopRightRadius: 40,
+            borderTopLeftRadius: 40,
+            height: 60,
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <Button
+            style={{
+              backgroundColor: 'transparent',
+              borderColor: 'transparent',
+              WebkitBoxShadow: 'none',
+            }}
+            onClick={() => history.goBack()}
+          >
+            <i
+              style={{
+                color: dba.footer_text_color,
+                alignSelf: 'center',
+              }}
+              class='fa fa-home fa-3x'
+              aria-hidden='true'
+            />
+          </Button>
+        </div>
       </div>
     </Fragment>
   );
@@ -100,11 +104,13 @@ const Landing = ({ restaurant, sections }) => {
 Landing.propTypes = {
   sections: PropTypes.array.isRequired,
   placeholder: PropTypes.array.isRequired,
+  dba: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
   restaurant: state.menus.menu,
   sections: state.menus.menu.sections,
+  dba: state.menus.dba,
 });
 
 export default connect(mapStateToProps, null)(Landing);

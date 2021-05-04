@@ -213,7 +213,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
               right: 0,
               marginBottom: 0,
               position: 'fixed',
-              backgroundColor: '#F8F8F8',
+              backgroundColor: dba.footer_color,
               borderTopRightRadius: 40,
               borderTopLeftRadius: 40,
               height: 60,
@@ -232,9 +232,8 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
             >
               <i
                 style={{
-                  color: dba.primary_color,
+                  color: dba.footer_text_color,
                   alignSelf: 'center',
-                  opacity: 0.7,
                 }}
                 className='fa fa-home fa-3x'
                 aria-hidden='true'

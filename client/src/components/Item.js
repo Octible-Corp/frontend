@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { Row, Col, Button } from 'reactstrap';
 import { useParams, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import back2 from '../assets/img/LeftArrow/LA2.png';
 import { primaryColor } from '../primaryColor';
 
-const Item = ({ items, sections }) => {
+const Item = ({ items, sections, dba }) => {
   const history = useHistory();
   const { item_id } = useParams();
   const [item, setItem] = useState({});
@@ -20,22 +19,21 @@ const Item = ({ items, sections }) => {
 
   return (
     <Fragment>
-      <div style={{}}>
+      <div style={{ backgroundColor: dba.background_color, height: 'auto' }}>
         <div
           style={{
             display: 'flex',
-            marginTop: 20,
             flexDirection: 'column',
             width: 'inherit',
           }}
         >
           <h1
             style={{
-              marginTop: 10,
+              marginTop: 30,
               textTransform: 'capitalize',
               fontFamily: 'helvetica',
               fontWeight: 'bold',
-              color: primaryColor,
+              color: dba.section_title_color,
               marginLeft: 35,
               fontSize: 40,
             }}
@@ -54,7 +52,7 @@ const Item = ({ items, sections }) => {
                   fontWeight: 'bold',
                   textTransform: 'capitalize',
                   marginLeft: 21,
-                  color: 'black',
+                  color: dba.single_item_text_color,
                   fontSize: 14,
                 }}
               >
@@ -69,7 +67,7 @@ const Item = ({ items, sections }) => {
                   fontWeight: 'bold',
                   textTransform: 'capitalize',
                   marginRight: 15,
-                  color: 'black',
+                  color: dba.single_item_text_color,
                   fontSize: 14,
                 }}
               >
@@ -84,6 +82,7 @@ const Item = ({ items, sections }) => {
                 marginLeft: 35,
                 marginTop: 3,
                 marginRight: 25,
+                color: dba.single_item_text_color2,
               }}
             >
               {item.description}
@@ -123,7 +122,7 @@ const Item = ({ items, sections }) => {
             right: 0,
             marginBottom: 0,
             position: 'fixed',
-            backgroundColor: '#F8F8F8',
+            backgroundColor: dba.footer_color,
             borderTopRightRadius: 40,
             borderTopLeftRadius: 40,
             height: 60,
@@ -141,7 +140,7 @@ const Item = ({ items, sections }) => {
           >
             <i
               style={{
-                color: primaryColor,
+                color: dba.footer_text_color,
                 alignSelf: 'center',
               }}
               class='fa fa-home fa-3x'
@@ -158,11 +157,13 @@ Item.propTypes = {
   item: PropTypes.object.isRequired,
   items: PropTypes.array.isRequired,
   section: PropTypes.array.isRequired,
+  dba: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   items: state.menus.menu.items,
   sections: state.menus.menu.sections,
+  dba: state.menus.dba,
 });
 
 export default connect(mapStateToProps, null)(Item);
