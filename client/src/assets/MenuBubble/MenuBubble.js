@@ -5,7 +5,7 @@ import { Card, Button } from 'reactstrap';
 import { primaryColor } from '../../primaryColor';
 import { setActiveSection } from '../../actions/menus';
 
-const MenuBubble = ({ text, section_id, setActiveSection }) => {
+const MenuBubble = ({ text, section_id, setActiveSection, dba }) => {
   return (
     <Fragment>
       <Button
@@ -16,17 +16,18 @@ const MenuBubble = ({ text, section_id, setActiveSection }) => {
           alignSelf: 'center',
           textAlign: 'center',
           marginBottom: 10,
+          backgroundColor: dba.section_button_color,
+          borderColor: dba.section_button_color,
           left: 4,
         }}
         onClick={() => setActiveSection(section_id)}
-        color='primary'
         placeholder='(Appetisers, entree, drinks, etc)'
         type='button'
       >
         <p
           style={{
             fontFamily: 'Helvetica',
-            color: 'white',
+            color: dba.section_button_text_color,
             fontSize: '100%',
             fontWeight: 'bold',
             // marginTop: '8px',
@@ -44,8 +45,11 @@ MenuBubble.propTypes = {
   text: PropTypes.string.isRequired,
   section_id: PropTypes.string.isRequired,
   setActiveSection: PropTypes.func.isRequired,
+  dba: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  dba: state.menus.dba,
+});
 
 export default connect(mapStateToProps, { setActiveSection })(MenuBubble);

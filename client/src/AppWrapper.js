@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Landing from './components/Landing.js';
 import Items from './components/Items.js';
@@ -13,21 +13,11 @@ const AppWrapper = ({ dba }) => {
     <Fragment>
       <div
         style={{
-          height: '100%',
+          height: 'auto',
           width: '100%',
           backgroundColor: dba.background_color,
         }}
       >
-        <img
-          src={
-            'https://s3-us-west-1.amazonaws.com/menu.octibleapi.com/wave.svg'
-          }
-          style={{
-            transform: 'rotate(90deg)',
-
-            backgroundColor: 'red',
-          }}
-        />
         <Switch>
           <Route exact path='/:restaurant_id' component={Landing} />
           <Route exact path='/items/:section_id' component={Items} />

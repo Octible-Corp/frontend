@@ -123,7 +123,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
                 bottom: 30,
                 fontFamily: 'helvetica',
                 fontWeight: 'bold',
-                color: 'black',
+                color: dba.title_color,
                 fontSize: 55,
               }}
             >
@@ -138,14 +138,14 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
                   style={{
                     borderRadius: '30px',
                     width: 120,
-                    backgroundColor: dba.primary_color,
-                    borderColor: dba.primary_color,
+                    backgroundColor: dba.section_button_color,
+                    borderColor: dba.section_button_color,
                   }}
                 >
                   <a
                     style={{
                       textDecoration: 'none',
-                      color: 'white',
+                      color: dba.section_button_text_color,
                       fontFamily: 'helvetica',
                     }}
                     href='https://www.google.com'
@@ -162,11 +162,16 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
                       borderRadius: '30px',
                       width: 120,
                       fontFamily: 'helvetica',
-                      backgroundColor: dba.primary_color,
-                      borderColor: dba.primary_color,
+                      backgroundColor: dba.section_button_color,
+                      borderColor: dba.section_button_color,
                     }}
                   >
-                    <a style={{ color: 'white', fontFamily: 'helvetica' }}>
+                    <a
+                      style={{
+                        color: dba.section_button_text_color,
+                        fontFamily: 'helvetica',
+                      }}
+                    >
                       Pdf
                     </a>
                   </Button>
@@ -180,7 +185,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
                 marginTop: 30,
                 fontFamily: 'helvetica',
                 fontSize: 20,
-                color: '#5A5A5A',
+                color: dba.subtitle_color,
               }}
             >
               Digital Menu
