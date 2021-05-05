@@ -15,7 +15,7 @@ const sleep = (ms) => {
 const url = 'https://octible.s3.us-east-2.amazonaws.com/';
 
 const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [loadingImg, setLoadingImg] = useState(true);
   const t0 = Date.now();
 
@@ -23,6 +23,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
     const api_url = window.location.href;
     (async () => {
       if (!loaded || !restaurant.hasOwnProperty('user_id')) {
+        setLoading(true);
         await getMenu(api_url);
         const t1 = Date.now();
         const diff = t1 - t0;
@@ -42,7 +43,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
       })();
     }
   }, [restaurant]);
-  //loading || !restaurant.hasOwnProperty('user_id')
+
   return (
     <Fragment>
       {loading || !restaurant.hasOwnProperty('user_id') ? (
@@ -203,42 +204,6 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
                 />
               </Link>
             ))}
-            <div style={{ height: 200 }}></div>
-          </div>
-
-          <div
-            style={{
-              bottom: 0,
-              left: 0,
-              right: 0,
-              marginBottom: 0,
-              position: 'fixed',
-              backgroundColor: dba.footer_color,
-              borderTopRightRadius: 40,
-              borderTopLeftRadius: 40,
-              height: 60,
-              display: 'flex',
-              flexDirection: 'column',
-              zIndex: 5,
-            }}
-          >
-            <Button
-              style={{
-                backgroundColor: 'transparent',
-                borderColor: 'transparent',
-                WebkitBoxShadow: 'none',
-              }}
-              onClick={() => {}}
-            >
-              <i
-                style={{
-                  color: dba.footer_text_color,
-                  alignSelf: 'center',
-                }}
-                className='fa fa-home fa-3x'
-                aria-hidden='true'
-              />
-            </Button>
           </div>
         </>
       )}

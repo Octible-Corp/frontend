@@ -17,7 +17,7 @@ const FoodCard = ({ item, dba }) => {
           type='button'
           style={{
             borderRadius: 23,
-            width: '90%',
+            width: '87%',
             minHeight: 80,
             backgroundColor: dba.item_button_color,
             borderColor: dba.item_button_color,

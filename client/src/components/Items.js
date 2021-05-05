@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FoodCard from './FoodCard';
+import Footer from './Footer';
 import { useParams, useHistory } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
@@ -20,7 +21,7 @@ const Landing = ({ restaurant, sections, dba }) => {
     let raw_section_name = sections.find((sec) => sec.section_id === section);
     setName(raw_section_name.section);
     setItems(placeholder);
-  }, []);
+  }, [section_id]);
 
   return (
     <Fragment>
@@ -39,7 +40,7 @@ const Landing = ({ restaurant, sections, dba }) => {
               fontFamily: 'helvetica',
               fontWeight: 'bold',
               color: dba.section_title_color,
-              marginLeft: 35,
+              marginLeft: 21,
               fontSize: 40,
             }}
           >
@@ -62,40 +63,17 @@ const Landing = ({ restaurant, sections, dba }) => {
               <FoodCard item={item} key={index}></FoodCard>
             </>
           ))}
+          {items.map((item, index) => (
+            <>
+              <div
+                style={{ height: 10, backgroundColor: dba.background_color }}
+              />
+              <FoodCard item={item} key={index}></FoodCard>
+            </>
+          ))}
+          <div style={{ height: 100 }} />
         </div>
-        <div
-          style={{
-            bottom: 0,
-            left: 0,
-            right: 0,
-            marginBottom: 0,
-            position: 'fixed',
-            backgroundColor: dba.footer_color,
-            borderTopRightRadius: 40,
-            borderTopLeftRadius: 40,
-            height: 60,
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
-          <Button
-            style={{
-              backgroundColor: 'transparent',
-              borderColor: 'transparent',
-              WebkitBoxShadow: 'none',
-            }}
-            onClick={() => history.goBack()}
-          >
-            <i
-              style={{
-                color: dba.footer_text_color,
-                alignSelf: 'center',
-              }}
-              class='fa fa-home fa-3x'
-              aria-hidden='true'
-            />
-          </Button>
-        </div>
+        <Footer destination={'home'} />
       </div>
     </Fragment>
   );

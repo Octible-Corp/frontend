@@ -3,8 +3,6 @@ const url = 'https://octible.s3.us-east-2.amazonaws.com/';
 export const preLoadImg = async (menu) => {
   try {
     let arr = [];
-    console.log('--MNUE');
-    console.log(menu);
     if (menu.logo_photo) {
       arr.push(`${url}${menu.logo_photo}`);
     }
@@ -18,6 +16,7 @@ export const preLoadImg = async (menu) => {
         });
       }
     });
+
     const promises = await arr.map((src) => {
       return new Promise((resolve, reject) => {
         const img = new Image();
@@ -27,7 +26,6 @@ export const preLoadImg = async (menu) => {
       });
     });
     await Promise.all(promises);
-    console.log('----DONE---');
   } catch (error) {
     console.log(error);
   }

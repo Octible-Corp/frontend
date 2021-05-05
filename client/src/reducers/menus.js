@@ -12,7 +12,7 @@ export default function (state = initialState, action) {
     case GET_MENU:
       return {
         ...state,
-        menu: { ...payload.menu, background_photo: '' },
+        menu: { ...payload.menu },
         dba: payload.dba,
         loaded: true,
       };

@@ -13,7 +13,8 @@ const AppWrapper = ({ dba }) => {
     <Fragment>
       <div
         style={{
-          height: 'auto',
+          minHeight: '100vh',
+          heigh: 'auto',
           width: '100%',
           backgroundColor: dba.background_color,
         }}

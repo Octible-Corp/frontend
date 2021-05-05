@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { Row, Col, Button } from 'reactstrap';
 import { useParams, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { primaryColor } from '../primaryColor';
+import Footer from './Footer';
 
 const Item = ({ items, sections, dba }) => {
-  const history = useHistory();
   const { item_id } = useParams();
   const [item, setItem] = useState({});
   const [name, setName] = useState('');
@@ -34,7 +33,7 @@ const Item = ({ items, sections, dba }) => {
               fontFamily: 'helvetica',
               fontWeight: 'bold',
               color: dba.section_title_color,
-              marginLeft: 35,
+              marginLeft: 21,
               fontSize: 40,
             }}
           >
@@ -51,7 +50,7 @@ const Item = ({ items, sections, dba }) => {
                   fontFamily: 'Helvetica',
                   fontWeight: 'bold',
                   textTransform: 'capitalize',
-                  marginLeft: 21,
+                  marginLeft: 9,
                   color: dba.single_item_text_color,
                   fontSize: 14,
                 }}
@@ -79,7 +78,7 @@ const Item = ({ items, sections, dba }) => {
             <p
               style={{
                 alignText: 'right',
-                marginLeft: 35,
+                marginLeft: 24,
                 marginTop: 3,
                 marginRight: 25,
                 color: dba.single_item_text_color2,
@@ -113,41 +112,7 @@ const Item = ({ items, sections, dba }) => {
           </Row>
           <div style={{ height: 100 }} />
         </Col>
-      </div>
-      <div>
-        <div
-          style={{
-            bottom: 0,
-            left: 0,
-            right: 0,
-            marginBottom: 0,
-            position: 'fixed',
-            backgroundColor: dba.footer_color,
-            borderTopRightRadius: 40,
-            borderTopLeftRadius: 40,
-            height: 60,
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
-          <Button
-            style={{
-              backgroundColor: 'transparent',
-              borderColor: 'transparent',
-              WebkitBoxShadow: 'none',
-            }}
-            onClick={() => history.goBack()}
-          >
-            <i
-              style={{
-                color: dba.footer_text_color,
-                alignSelf: 'center',
-              }}
-              class='fa fa-home fa-3x'
-              aria-hidden='true'
-            />
-          </Button>
-        </div>
+        <Footer destination={'back'} />
       </div>
     </Fragment>
   );
