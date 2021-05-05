@@ -100,7 +100,7 @@ const Item = ({ items, sections, dba }) => {
                 style={{
                   borderRadius: 30,
                   marginTop: 30,
-                  width: '85%',
+                  width: '75%',
                   height: 'auto',
                   alignSelf: 'center',
                 }}
