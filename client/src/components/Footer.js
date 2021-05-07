@@ -72,86 +72,84 @@ const Footer = ({ dba, sections, dba_id, destination, active_section_id }) => {
         </Button>
       </div>
       <Modal isOpen={menuModal} toggle={() => setMenuModal(false)}>
-        <div>
-          <Col
-            style={{
-              bottom: 40,
-              position: 'fixed',
-              width: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              flexDirection: 'column',
-            }}
-          >
-            {sections.map((sec) => (
-              <Link to={`/items/:${sec.section_id}`}>
-                <Button
-                  style={{
-                    borderRadius: '30px',
-                    marginTop: 5,
-                    width: 200,
-                    height: '43px',
-                    textAlign: 'center',
-                    marginBottom: 10,
-                    backgroundColor: dba.footer_color1,
-                    borderColor: dba.footer_color1,
-                    left: -4,
-                  }}
-                  onClick={() => setMenuModal(false)}
-                  placeholder='(Appetisers, entree, drinks, etc)'
-                  type='button'
-                >
-                  <p
-                    style={{
-                      fontFamily: 'Helvetica',
-                      color: dba.footer_color2,
-                      fontSize: '100%',
-                      fontWeight: 'bold',
-                      alignSelf: 'center',
-                    }}
-                  >
-                    {sec.section}
-                  </p>
-                </Button>
-              </Link>
-            ))}
-            <Link
-              style={{
-                alignSelf: 'flex-start',
-                marginLeft: '13%',
-                marginTop: '5%',
-              }}
-              to={
-                destination === 'home'
-                  ? `/:${dba_id}`
-                  : `/items/:${active_section_id}`
-              }
-            >
+        <Col
+          style={{
+            bottom: 40,
+            position: 'fixed',
+            display: 'flex',
+            alignItems: 'center',
+            flexDirection: 'column',
+            alignSelf: 'center',
+          }}
+        >
+          {sections.map((sec) => (
+            <Link to={`/items/:${sec.section_id}`}>
               <Button
-                onClick={() => setMenuModal(true)}
                 style={{
-                  WebkitBoxShadow: 'none',
-                  backgroundColor: dba.footer_color2,
-                  borderColor: dba.footer_color2,
-                  height: 50,
-                  width: 50,
-                  borderRadius: 40,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  boxShadow: `.3px .3px 5px grey`,
+                  borderRadius: '30px',
+                  marginTop: 5,
+                  width: 200,
+                  height: '43px',
+                  textAlign: 'center',
+                  marginBottom: 10,
+                  backgroundColor: dba.footer_color1,
+                  borderColor: dba.footer_color1,
+                  alignSelf: 'center',
                 }}
+                onClick={() => setMenuModal(false)}
+                placeholder='(Appetisers, entree, drinks, etc)'
+                type='button'
               >
-                <i
+                <p
                   style={{
-                    color: dba.footer_color1,
+                    fontFamily: 'Helvetica',
+                    color: dba.footer_color2,
+                    fontSize: '100%',
+                    fontWeight: 'bold',
                     alignSelf: 'center',
                   }}
-                  class='ni ni-bold-left ni-lg'
-                />
+                >
+                  {sec.section}
+                </p>
               </Button>
             </Link>
-          </Col>
-        </div>
+          ))}
+          <Link
+            style={{
+              alignSelf: 'center',
+              marginRight: 150,
+              marginTop: '5%',
+            }}
+            to={
+              destination === 'home'
+                ? `/:${dba_id}`
+                : `/items/:${active_section_id}`
+            }
+          >
+            <Button
+              onClick={() => setMenuModal(true)}
+              style={{
+                WebkitBoxShadow: 'none',
+                backgroundColor: dba.footer_color2,
+                borderColor: dba.footer_color2,
+                height: 50,
+                width: 50,
+                borderRadius: 40,
+                display: 'flex',
+                justifyContent: 'center',
+                boxShadow: `.3px .3px 5px grey`,
+              }}
+            >
+              <i
+                style={{
+                  color: dba.footer_color1,
+                  alignSelf: 'center',
+                }}
+                class='ni ni-bold-left ni-lg'
+              />
+            </Button>
+          </Link>
+        </Col>
       </Modal>
     </Fragment>
   );

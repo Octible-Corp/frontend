@@ -7,11 +7,7 @@ export const getMenu = (url) => async (dispatch) => {
   try {
     const dba_id = url.split(':').pop();
     const body = { dba_id: dba_id };
-    console.log('---API CALL URL');
-    console.log(dba_id);
     const res = await api.post('/menus/get_menu', body);
-    console.log('---RES---');
-    console.log(res);
     if (!res.data) {
       return;
     }
