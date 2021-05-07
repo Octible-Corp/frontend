@@ -1,10 +1,9 @@
 import axios from 'axios';
-const localhost = 'localhost:5000';
-//const serverIP = 'd26tn4f5yjcq1p.cloudfront.net';
-const serverIP = 'fde892145a8c.ngrok.io';
+//const serverIP = 'localhost:5000';
+const serverIP = 'd26tn4f5yjcq1p.cloudfront.net';
 
 const api = axios.create({
-  baseURL: `http://${serverIP}/`,
+  baseURL: `https://${serverIP}/`,
   headers: {
     'Content-Type': 'application/json',
   },

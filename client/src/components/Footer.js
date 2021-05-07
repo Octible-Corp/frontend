@@ -75,7 +75,7 @@ const Footer = ({ dba, sections, dba_id, destination, active_section_id }) => {
         <div>
           <Col
             style={{
-              bottom: 120,
+              bottom: 40,
               position: 'fixed',
               width: '100%',
               display: 'flex',
@@ -116,7 +116,11 @@ const Footer = ({ dba, sections, dba_id, destination, active_section_id }) => {
               </Link>
             ))}
             <Link
-              style={{ position: 'fixed', bottom: 0, marginRight: 162 }}
+              style={{
+                alignSelf: 'flex-start',
+                marginLeft: '13%',
+                marginTop: '5%',
+              }}
               to={
                 destination === 'home'
                   ? `/:${dba_id}`
@@ -132,10 +136,8 @@ const Footer = ({ dba, sections, dba_id, destination, active_section_id }) => {
                   height: 50,
                   width: 50,
                   borderRadius: 40,
-                  bottom: 40,
                   display: 'flex',
                   justifyContent: 'center',
-
                   boxShadow: `.3px .3px 5px grey`,
                 }}
               >
