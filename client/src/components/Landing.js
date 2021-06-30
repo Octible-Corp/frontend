@@ -61,7 +61,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
     // Store timestamp in useRef()
 
     return () => {
-      const time_2 = new Date.now();
+      const time_2 = Date.now();
       const diff = time_2 - t0;
       const data_obj = {
         session_id: null,
@@ -71,7 +71,8 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
         screen: screen_name,
       };
       //Send object to backend
-      captureData(data_obj);
+      console.log(data_obj);
+      //captureData(data_obj);
     };
   }, []);
 
