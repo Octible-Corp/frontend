@@ -23,6 +23,17 @@ export const getMenu = (url) => async (dispatch) => {
   }
 };
 
+// Get Menus
+export const captureData = async (data) => {
+  try {
+    const body = { data: data };
+    await api.post('/analytics/capture_data', body);
+  } catch (err) {
+    throw new Error(err);
+  }
+  return;
+};
+
 // Set active section
 export const setActiveSection = (section_id) => async (dispatch) => {
   try {

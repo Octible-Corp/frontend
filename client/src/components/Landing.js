@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MenuBubble from '../assets/MenuBubble/MenuBubble';
@@ -7,6 +7,8 @@ import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getMenu } from '../actions/menus';
 import { preLoadImg } from '../actions/workers';
+import { useLocation } from 'react-router-dom';
+import { captureData } from '../actions/menus';
 
 const sleep = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -17,6 +19,8 @@ const url = 'https://octible.s3.us-east-2.amazonaws.com/';
 const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
   const [loading, setLoading] = useState(false);
   const [loadingImg, setLoadingImg] = useState(true);
+  const time_ref = useRef(null);
+
   const t0 = Date.now();
 
   useEffect(() => {
@@ -43,6 +47,33 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
       })();
     }
   }, [restaurant]);
+
+  const location = useLocation();
+  const screen_name = location.pathname;
+
+  useEffect(() => {
+    //Create session id, store session id in state
+
+    //start time = getTimestamp (unix)
+
+    time_ref.current = t0;
+
+    // Store timestamp in useRef()
+
+    return () => {
+      const time_2 = new Date.now();
+      const diff = time_2 - t0;
+      const data_obj = {
+        session_id: null,
+        menu_id: restaurant.menu_id,
+        start_time: time_ref.current,
+        time_spent: diff,
+        screen: screen_name,
+      };
+      //Send object to backend
+      captureData(data_obj);
+    };
+  }, []);
 
   return (
     <Fragment>
