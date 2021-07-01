@@ -1,14 +1,56 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Button } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Footer from './Footer';
-
+import { initSession } from '../actions/menus';
+import { captureData } from '../actions/menus';
 const pre_url = 'https://octible.s3.us-east-2.amazonaws.com/';
 
-const Pdf = ({ photos, dba }) => {
+const Pdf = ({ restaurant, photos, dba, session_id, session_start, initSession }) => {
   const history = useHistory();
+  const time_ref = useRef({
+    menu_id: null,
+    start_time: null,
+    session_id: null
+  });
+  const t0 = Date.now();
+
+  useEffect(() => {
+    //Create session id, store session id in state
+    // if no session id or if it's been 6 days
+    const d = Date.now();
+    if (!session_id || d - session_start > 21600000) {
+      console.log('Generate new session');
+      const newSessionId = Math.random().toString(33).substring(2, 30);
+      initSession(newSessionId, d);
+    }
+
+    //start time = getTimestamp (unix)
+
+    time_ref.current.start_time = t0;
+    time_ref.current.menu_id = restaurant.menu_id;
+    // Store timestamp in useRef()
+    console.log('-----USE EFFECT 1-------');
+
+    return () => {
+      console.log('-----USE EFFECT 2-------')
+      const time_2 = Date.now();
+      const diff = (time_2 - t0) / 1000.0;
+      const data_obj = {
+        session_id: session_id,
+        menu_id: time_ref.current.menu_id,
+        start_time: time_ref.current,
+        time_spent: diff,
+        screen: "Pdf",
+      };
+
+      //Send object to backend
+      captureData(data_obj);
+    };
+  }, []);
+
   return (
     <Fragment>
       <div style={{ backgroundColor: dba.background_color, height: '100vh' }}>
@@ -41,11 +83,17 @@ const Pdf = ({ photos, dba }) => {
 Pdf.propTypes = {
   photos: PropTypes.array.isRequired,
   dba: PropTypes.object.isRequired,
+  session_id: PropTypes.string.isRequired,
+  initSession: PropTypes.func.isRequired,
+  session_start: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   photos: state.menus.menu.pdf,
   dba: state.menus.dba,
+  restaurant: state.menus.menu,
+  session_id: state.menus.session_id,
+  session_start: state.menus.session_start,
 });
 
-export default connect(mapStateToProps, null)(Pdf);
+export default connect(mapStateToProps, { initSession })(Pdf);

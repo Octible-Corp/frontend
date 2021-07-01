@@ -1,9 +1,12 @@
-import { GET_MENU, SET_ACTIVE_SECTION } from '../actions/types';
+import { GET_MENU, INIT_SESSION, SET_ACTIVE_SECTION } from '../actions/types';
+
 let initialState = {
   menu: { sections: [], items: [] },
   dba: { background_color: '' },
   loaded: false,
   active_section_id: '',
+  session_id: '',
+  session_start: null
 };
 
 export default function (state = initialState, action) {
@@ -20,6 +23,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         active_section_id: payload,
+      };
+    case INIT_SESSION:
+      return {
+        ...state,
+        session_id: action.payload.session_id,
+        session_start: action.payload.session_start
       };
     default:
       return state;

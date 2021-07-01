@@ -1,5 +1,5 @@
 import api from '../utils/api';
-import { GET_MENU, SET_ACTIVE_SECTION } from './types';
+import { GET_MENU, SET_ACTIVE_SECTION, INIT_SESSION } from './types';
 import { preLoadImg } from './workers';
 
 // Get Menus
@@ -27,7 +27,21 @@ export const getMenu = (url) => async (dispatch) => {
 export const captureData = async (data) => {
   try {
     const body = { data: data };
+    console.log(data);
     await api.post('/analytics/capture_data', body);
+  } catch (err) {
+    throw new Error(err);
+  }
+  return;
+};
+
+// Get Menus
+export const initSession = (session_id, session_start) => async (dispatch) => {
+  try {
+    dispatch({
+      type: INIT_SESSION,
+      payload: { session_id: session_id, session_start: session_start },
+    });
   } catch (err) {
     throw new Error(err);
   }

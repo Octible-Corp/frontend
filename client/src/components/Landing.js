@@ -5,7 +5,7 @@ import MenuBubble from '../assets/MenuBubble/MenuBubble';
 import { Row, Button, Col } from 'reactstrap';
 import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { getMenu } from '../actions/menus';
+import { getMenu, initSession } from '../actions/menus';
 import { preLoadImg } from '../actions/workers';
 import { useLocation } from 'react-router-dom';
 import { captureData } from '../actions/menus';
@@ -16,10 +16,14 @@ const sleep = (ms) => {
 
 const url = 'https://octible.s3.us-east-2.amazonaws.com/';
 
-const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
+const Landing = ({ restaurant, sections, getMenu, loaded, dba, session_id, session_start, initSession }) => {
   const [loading, setLoading] = useState(false);
   const [loadingImg, setLoadingImg] = useState(true);
-  const time_ref = useRef(null);
+  const time_ref = useRef({
+    menu_id: null,
+    start_time: null,
+    session_id: null
+  });
 
   const t0 = Date.now();
 
@@ -41,6 +45,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
 
   useEffect(() => {
     if (restaurant.hasOwnProperty('menu_id')) {
+      time_ref.current.menu_id = restaurant.menu_id;
       (async () => {
         await preLoadImg(restaurant);
         setLoadingImg(false);
@@ -53,26 +58,39 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
 
   useEffect(() => {
     //Create session id, store session id in state
+    // if no session id or if it's been 6 days
+    const d = Date.now();
+    if (session_id === "" || d - session_start > 21600000) {
+      console.log('Generate new session');
+      const newSessionId = Math.random().toString(33).substring(2, 30);
+      initSession(newSessionId, d);
+      time_ref.current.session_id = newSessionId
+    } else {
+      time_ref.current.session_id = session_id
+    }
 
     //start time = getTimestamp (unix)
 
-    time_ref.current = t0;
+    time_ref.current.start_time = t0;
+
 
     // Store timestamp in useRef()
+    console.log('-----USE EFFECT 1-------')
 
     return () => {
+      console.log('-----USE EFFECT 2-------')
       const time_2 = Date.now();
-      const diff = time_2 - t0;
+      const diff = (time_2 - time_ref.current.start_time) / 1000.0;
       const data_obj = {
-        session_id: null,
-        menu_id: restaurant.menu_id,
-        start_time: time_ref.current,
+        session_id: time_ref.current.session_id,
+        menu_id: time_ref.current.menu_id,
+        start_time: time_ref.current.start_time,
         time_spent: diff,
-        screen: screen_name,
+        screen: "Landing",
       };
+
       //Send object to backend
-      console.log(data_obj);
-      //captureData(data_obj);
+      captureData(data_obj);
     };
   }, []);
 
@@ -244,6 +262,9 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba }) => {
 };
 
 Landing.propTypes = {
+  session_id: PropTypes.string.isRequired,
+  initSession: PropTypes.func.isRequired,
+  session_start: PropTypes.number.isRequired,
   sections: PropTypes.array.isRequired,
   getMenu: PropTypes.func.isRequired,
   loaded: PropTypes.bool.isRequired,
@@ -251,10 +272,12 @@ Landing.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  session_id: state.menus.session_id,
+  session_start: state.menus.session_start,
   restaurant: state.menus.menu,
   sections: state.menus.menu.sections,
   dba: state.menus.dba,
   loaded: state.menus.loaded,
 });
 
-export default connect(mapStateToProps, { getMenu })(Landing);
+export default connect(mapStateToProps, { getMenu, initSession })(Landing);
