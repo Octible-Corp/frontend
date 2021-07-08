@@ -188,7 +188,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba, session_id, sessi
                   type='button'
                   style={{
                     borderRadius: '30px',
-                    width: 120,
+                    width: 160,
                     backgroundColor: dba.section_button_color,
                     borderColor: dba.section_button_color,
                   }}
@@ -198,6 +198,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba, session_id, sessi
                       textDecoration: 'none',
                       color: dba.section_button_text_color,
                       fontFamily: 'helvetica',
+                      fontSize: 'auto'
                     }}
                     href='https://www.google.com'
                   >
@@ -232,10 +233,10 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba, session_id, sessi
 
             <p
               style={{
-                marginBottom: 10,
+                marginBottom: 20,
                 marginTop: 30,
                 fontFamily: 'helvetica',
-                fontSize: 20,
+                fontSize: 40,
                 color: dba.subtitle_color,
               }}
             >
@@ -251,6 +252,10 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba, session_id, sessi
                 <MenuBubble
                   section_id={section.section_id}
                   text={`${section.section}`}
+                  style={{
+                    width: 'auto',
+                    height: 'auto'
+                  }}
                 />
               </Link>
             ))}

@@ -1,12 +1,53 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Button } from 'reactstrap';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Footer from './Footer';
-
-const Item = ({ items, sections, dba }) => {
+import { captureData } from '../actions/menus';
+import { initSession } from '../actions/menus';
+const Item = ({ restaurant, items, sections, dba, session_id, session_start, initSession  }) => {
   const { item_id } = useParams();
+  let location = useLocation();
+  location = location.pathname.split(":").pop();
+  const time_ref = useRef({
+    menu_id: null,
+    start_time: null,
+    session_id: null,
+  });
+  const t0 = Date.now();
+  useEffect(() => {
+    //Create session id, store session id in state
+    // if no session id or if it's been 6 days
+    const d = Date.now();
+    if (!session_id || d - session_start > 21600000) {
+      console.log('Generate new session');
+      const newSessionId = Math.random().toString(33).substring(2, 30);
+      initSession(newSessionId, d);
+    }
+
+    //start time = getTimestamp (unix)
+    time_ref.current.start_time = t0;
+    time_ref.current.menu_id = restaurant.menu_id;
+    // Store timestamp in useRef()
+    console.log('-----USE EFFECT 1-------');
+    return () => {
+      console.log('-----USE EFFECT 2-------')
+      const time_2 = Date.now();
+      const diff = (time_2 - t0) / 1000.0;
+      const data_obj = {
+        session_id: session_id,
+        menu_id: time_ref.current.menu_id,
+        start_time: time_ref.current,
+        time_spent: diff,
+        screen: "Item: " + location,
+      };
+
+      //Send object to backend
+      captureData(data_obj);
+    };
+  }, [location]);
+
   const [item, setItem] = useState({});
   const [name, setName] = useState('');
   useEffect(() => {
@@ -119,6 +160,9 @@ const Item = ({ items, sections, dba }) => {
 };
 
 Item.propTypes = {
+  session_id: PropTypes.string.isRequired,
+  initSession: PropTypes.func.isRequired,
+  session_start: PropTypes.number.isRequired,
   item: PropTypes.object.isRequired,
   items: PropTypes.array.isRequired,
   section: PropTypes.array.isRequired,
@@ -129,6 +173,7 @@ const mapStateToProps = (state) => ({
   items: state.menus.menu.items,
   sections: state.menus.menu.sections,
   dba: state.menus.dba,
+  restaurant: state.menus.menu,
 });
 
-export default connect(mapStateToProps, null)(Item);
+export default connect(mapStateToProps, { initSession })(Item);

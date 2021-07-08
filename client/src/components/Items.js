@@ -55,7 +55,7 @@ const Landing = ({ restaurant, sections, dba, session_id, session_start, initSes
         menu_id: time_ref.current.menu_id,
         start_time: time_ref.current,
         time_spent: diff,
-        screen: location,
+        screen: "Section: " + location,
       };
 
       //Send object to backend
