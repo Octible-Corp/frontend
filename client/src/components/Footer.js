@@ -86,10 +86,12 @@ const Footer = ({ dba, sections, dba_id, destination, active_section_id }) => {
             <Link to={`/items/:${sec.section_id}`}>
               <Button
                 style={{
+                  justifyContent: 'center',
                   borderRadius: '30px',
                   marginTop: 5,
                   width: 200,
                   height: '43px',
+                  position: "relative",
                   textAlign: 'center',
                   marginBottom: 10,
                   backgroundColor: dba.footer_color1,
@@ -104,8 +106,11 @@ const Footer = ({ dba, sections, dba_id, destination, active_section_id }) => {
                   style={{
                     fontFamily: 'Helvetica',
                     color: dba.footer_color2,
-                    fontSize: '100%',
+                    fontSize: '85%',
+                    textTransform: 'none',
                     fontWeight: 'bold',
+                    position: 'relative',
+                    bottom: '8px',
                     alignSelf: 'center',
                   }}
                 >

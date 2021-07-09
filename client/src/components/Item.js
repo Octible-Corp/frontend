@@ -21,7 +21,6 @@ const Item = ({ restaurant, items, sections, dba, session_id, session_start, ini
     // if no session id or if it's been 6 days
     const d = Date.now();
     if (!session_id || d - session_start > 21600000) {
-      console.log('Generate new session');
       const newSessionId = Math.random().toString(33).substring(2, 30);
       initSession(newSessionId, d);
     }
@@ -30,9 +29,7 @@ const Item = ({ restaurant, items, sections, dba, session_id, session_start, ini
     time_ref.current.start_time = t0;
     time_ref.current.menu_id = restaurant.menu_id;
     // Store timestamp in useRef()
-    console.log('-----USE EFFECT 1-------');
     return () => {
-      console.log('-----USE EFFECT 2-------')
       const time_2 = Date.now();
       const diff = (time_2 - t0) / 1000.0;
       const data_obj = {
@@ -70,7 +67,6 @@ const Item = ({ restaurant, items, sections, dba, session_id, session_start, ini
           <h1
             style={{
               marginTop: 30,
-              textTransform: 'capitalize',
               fontFamily: 'helvetica',
               fontWeight: 'bold',
               color: dba.section_title_color,
@@ -90,7 +86,6 @@ const Item = ({ restaurant, items, sections, dba, session_id, session_start, ini
                   textAlign: 'left',
                   fontFamily: 'Helvetica',
                   fontWeight: 'bold',
-                  textTransform: 'capitalize',
                   marginLeft: 9,
                   color: dba.single_item_text_color,
                   fontSize: 14,
@@ -105,7 +100,6 @@ const Item = ({ restaurant, items, sections, dba, session_id, session_start, ini
                   textAlign: 'right',
                   fontFamily: 'Helvetica',
                   fontWeight: 'bold',
-                  textTransform: 'capitalize',
                   marginRight: 15,
                   color: dba.single_item_text_color,
                   fontSize: 14,

@@ -61,7 +61,6 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba, session_id, sessi
     // if no session id or if it's been 6 days
     const d = Date.now();
     if (session_id === "" || d - session_start > 21600000) {
-      console.log('Generate new session');
       const newSessionId = Math.random().toString(33).substring(2, 30);
       initSession(newSessionId, d);
       time_ref.current.session_id = newSessionId
@@ -75,10 +74,8 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba, session_id, sessi
 
 
     // Store timestamp in useRef()
-    console.log('-----USE EFFECT 1-------')
 
     return () => {
-      console.log('-----USE EFFECT 2-------')
       const time_2 = Date.now();
       const diff = (time_2 - time_ref.current.start_time) / 1000.0;
       const data_obj = {
@@ -171,7 +168,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba, session_id, sessi
             <p
               style={{
                 position: 'relative',
-                bottom: 30,
+                bottom: 25,
                 fontFamily: 'helvetica',
                 fontWeight: 'bold',
                 color: dba.title_color,
@@ -181,62 +178,75 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba, session_id, sessi
               {restaurant.name}
             </p>
             <Row
-              style={{ position: 'relative', bottom: 20, marginBottom: -10 }}
+              style={{ position: 'relative', bottom: 40, marginBottom: -10 }}
             >
               <Col>
                 <Button
                   type='button'
                   style={{
+                    position: 'relative',
                     borderRadius: '30px',
-                    width: 160,
+                    width: 130,
+                    height: 40,
                     backgroundColor: dba.section_button_color,
                     borderColor: dba.section_button_color,
                   }}
                 >
-                  <a
+                  <Link
                     style={{
-                      textDecoration: 'none',
                       color: dba.section_button_text_color,
                       fontFamily: 'helvetica',
-                      fontSize: 'auto'
+                      fontSize: 20,
+                      justifyContent: 'center',
+                      position: 'absolute',
+                      top: '5px',
+                      left: '23px',
+                      textTransform: 'none'
                     }}
-                    href='https://www.google.com'
+                    to='https://www.google.com'
                   >
                     Website
-                  </a>
+                  </Link>
                 </Button>
               </Col>
               <Col>
-                <Link to={'/pdf/photos'}>
-                  <Button
-                    type='button'
+              <Button
+                  type='button'
+                  style={{
+                    position: 'relative',
+                    borderRadius: '30px',
+                    width: 130,
+                    height: 40,
+                    padding: '0px',
+                    backgroundColor: dba.section_button_color,
+                    borderColor: dba.section_button_color,
+                  }}
+                >
+                  <Link
                     style={{
-                      borderRadius: '30px',
-                      width: 120,
+                      color: dba.section_button_text_color,
                       fontFamily: 'helvetica',
-                      backgroundColor: dba.section_button_color,
-                      borderColor: dba.section_button_color,
+                      fontSize: 18,
+                      justifyContent: 'center',
+                      position: 'absolute',
+                      top: '7px',
+                      left: '20px',
+                      textTransform: 'none'
                     }}
+                    to={'/pdf/photos'}
                   >
-                    <a
-                      style={{
-                        color: dba.section_button_text_color,
-                        fontFamily: 'helvetica',
-                      }}
-                    >
-                      Pdf
-                    </a>
-                  </Button>
-                </Link>
+                    PDF Menu
+                  </Link>
+                </Button>
               </Col>
             </Row>
 
             <p
               style={{
                 marginBottom: 20,
-                marginTop: 30,
+                marginTop: 5,
                 fontFamily: 'helvetica',
-                fontSize: 40,
+                fontSize: 25,
                 color: dba.subtitle_color,
               }}
             >
@@ -252,10 +262,6 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba, session_id, sessi
                 <MenuBubble
                   section_id={section.section_id}
                   text={`${section.section}`}
-                  style={{
-                    width: 'auto',
-                    height: 'auto'
-                  }}
                 />
               </Link>
             ))}

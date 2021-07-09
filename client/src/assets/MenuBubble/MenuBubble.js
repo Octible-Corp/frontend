@@ -11,27 +11,31 @@ const MenuBubble = ({ text, section_id, setActiveSection, dba }) => {
       <Button
         style={{
           borderRadius: '30px',
-          width: 300,
-          height: '43px',
+          width: '270px',
+          height: '45px',
           alignSelf: 'center',
           textAlign: 'center',
-          marginBottom: 10,
+          marginBottom: 15,
           backgroundColor: dba.section_button_color,
           borderColor: dba.section_button_color,
           left: 4,
+          position: 'relative'
         }}
         onClick={() => setActiveSection(section_id)}
-        placeholder='(Appetisers, entree, drinks, etc)'
+        placeholder='Food Section'
         type='button'
       >
         <p
           style={{
             fontFamily: 'Helvetica',
             color: dba.section_button_text_color,
-            fontSize: '100%',
+            position: 'relative',
+            justifyContent: 'center',
+            bottom: '7px',
+            fontSize: '80%',
             fontWeight: 'bold',
-            // marginTop: '8px',
             alignSelf: 'center',
+            textTransform: 'none'
           }}
         >
           {text}

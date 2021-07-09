@@ -63,7 +63,6 @@ const FoodCard = ({ item, dba }) => {
                 textAlign: 'left',
                 fontFamily: 'Helvetica',
                 fontSize: '90%',
-                textTransform: 'capitalize',
                 lineHeight: 1.3,
                 color: dba.item_button_text_color2,
               }}
