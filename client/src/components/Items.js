@@ -73,7 +73,7 @@ const Landing = ({ restaurant, sections, dba, session_id, session_start, initSes
           <h1
             style={{
               marginTop: 30,
-              fontFamily: 'helvetica',
+              fontFamily: 'Lato',
               fontWeight: 'bold',
               color: dba.section_title_color,
               marginLeft: 21,

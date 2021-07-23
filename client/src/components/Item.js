@@ -67,7 +67,7 @@ const Item = ({ restaurant, items, sections, dba, session_id, session_start, ini
           <h1
             style={{
               marginTop: 30,
-              fontFamily: 'helvetica',
+              fontFamily: 'Lato',
               fontWeight: 'bold',
               color: dba.section_title_color,
               marginLeft: 21,
@@ -84,7 +84,7 @@ const Item = ({ restaurant, items, sections, dba, session_id, session_start, ini
               <p
                 style={{
                   textAlign: 'left',
-                  fontFamily: 'Helvetica',
+                  fontFamily: 'Lato',
                   fontWeight: 'bold',
                   marginLeft: 9,
                   color: dba.single_item_text_color,
@@ -98,7 +98,7 @@ const Item = ({ restaurant, items, sections, dba, session_id, session_start, ini
               <p
                 style={{
                   textAlign: 'right',
-                  fontFamily: 'Helvetica',
+                  fontFamily: 'Lato',
                   fontWeight: 'bold',
                   marginRight: 15,
                   color: dba.single_item_text_color,

@@ -34,41 +34,11 @@ const Footer = ({ dba, sections, dba_id, destination, active_section_id }) => {
             boxShadow: `.3px .3px 5px grey`,
           }}
         >
-          <svg
-            id='Drop_Menu'
-            data-name='Drop Menu'
-            xmlns='http://www.w3.org/2000/svg'
-            width='40'
-            height='48'
-            viewBox='0 0 48 37'
-          >
-            <rect
-              id='Rectangle_20'
-              data-name='Rectangle 20'
-              width='48'
-              height='7'
-              rx='3.5'
-              fill={dba.footer_color2}
-            />
-            <rect
-              id='Rectangle_21'
-              data-name='Rectangle 21'
-              width='48'
-              height='7'
-              rx='3.5'
-              transform='translate(0 15)'
-              fill={dba.footer_color2}
-            />
-            <rect
-              id='Rectangle_22'
-              data-name='Rectangle 22'
-              width='48'
-              height='7'
-              rx='3.5'
-              transform='translate(0 30)'
-              fill={dba.footer_color2}
-            />
-          </svg>
+          <i className="fas fa-bars fa-lg"
+          style={{
+            color: "white"
+          }}
+          ></i>
         </Button>
       </div>
       <Modal isOpen={menuModal} toggle={() => setMenuModal(false)}>
@@ -104,7 +74,7 @@ const Footer = ({ dba, sections, dba_id, destination, active_section_id }) => {
               >
                 <p
                   style={{
-                    fontFamily: 'Helvetica',
+                    fontFamily: 'Lato',
                     color: dba.footer_color2,
                     fontSize: '85%',
                     textTransform: 'none',
@@ -119,19 +89,13 @@ const Footer = ({ dba, sections, dba_id, destination, active_section_id }) => {
               </Button>
             </Link>
           ))}
-          <Link
-            style={{
-              alignSelf: 'center',
-              marginRight: 150,
-              marginTop: '5%',
-            }}
-            to={
-              destination === 'home'
-                ? `/:${dba_id}`
-                : `/items/:${active_section_id}`
-            }
-          >
-            <Button
+          <div style={{
+            display: "flex",
+            flexDirection: "row",
+            height: "70px",
+            width: "100%",
+          }}> 
+          <div
               onClick={() => setMenuModal(true)}
               style={{
                 WebkitBoxShadow: 'none',
@@ -139,21 +103,72 @@ const Footer = ({ dba, sections, dba_id, destination, active_section_id }) => {
                 borderColor: dba.footer_color2,
                 height: 50,
                 width: 50,
-                borderRadius: 40,
+                borderRadius: 50,
+                display: 'flex',
+                marginTop: "20px",
+                marginLeft: "80px",  
+                marginRight: "70px",
+                justifyContent: 'center',
+                boxShadow: `.3px .3px 5px grey`,
+              }} >
+                <Link
+            style={{
+              alignSelf: 'center',
+              width:"auto"
+            }}
+            to={
+              destination === 'home'
+                ? `/:${dba_id}`
+                : `/items/:${active_section_id}`
+            }
+          >
+              <i
+                style={{
+                  color: dba.footer_color1,
+                  alignSelf: 'center',
+                  width: "inherit",
+                  height: "inherit",
+                  marginTop: "10px"
+                }}
+                className='ni ni-bold-left ni-lg'
+              />
+            </Link>
+          </div>
+          <div
+              onClick={() => setMenuModal(true)}
+              style={{
+                WebkitBoxShadow: 'none',
+                backgroundColor: dba.footer_color2,
+                borderColor: dba.footer_color2,
+                height: 50,
+                width: 50,
+                borderRadius: 50,
+                marginLeft: "25px",
+                marginTop: "20px",
                 display: 'flex',
                 justifyContent: 'center',
                 boxShadow: `.3px .3px 5px grey`,
               }}
             >
+          <Link
+            style={{
+              alignSelf: 'center',
+
+            }}
+            to={
+            `/:${dba_id}`
+            }>
               <i
                 style={{
                   color: dba.footer_color1,
                   alignSelf: 'center',
+                
                 }}
-                class='ni ni-bold-left ni-lg'
+                className='fa fa-home'
               />
-            </Button>
           </Link>
+            </div>
+          </div>      
         </Col>
       </Modal>
     </Fragment>

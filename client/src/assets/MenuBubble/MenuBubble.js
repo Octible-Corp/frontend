@@ -27,7 +27,7 @@ const MenuBubble = ({ text, section_id, setActiveSection, dba }) => {
       >
         <p
           style={{
-            fontFamily: 'Helvetica',
+            fontFamily: 'Lato',
             color: dba.section_button_text_color,
             position: 'relative',
             justifyContent: 'center',

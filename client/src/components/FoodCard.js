@@ -31,7 +31,7 @@ const FoodCard = ({ item, dba }) => {
                 style={{
                   width: '100%',
                   textAlign: 'left',
-                  fontFamily: 'Helvetica',
+                  fontFamily: 'Lato',
                   fontSize: '100%',
                   fontWeight: 'bold',
                   color: dba.item_button_text_color,
@@ -44,7 +44,7 @@ const FoodCard = ({ item, dba }) => {
               <CardTitle
                 style={{
                   textAlign: 'right',
-                  fontFamily: 'Helvetica',
+                  fontFamily: 'Lato',
                   fontSize: '100%',
                   fontWeight: 'bold',
                   color: dba.item_button_text_color,
@@ -61,7 +61,7 @@ const FoodCard = ({ item, dba }) => {
                 marginLeft: 15,
                 marginRight: 10,
                 textAlign: 'left',
-                fontFamily: 'Helvetica',
+                fontFamily: 'Lato',
                 fontSize: '90%',
                 lineHeight: 1.3,
                 color: dba.item_button_text_color2,

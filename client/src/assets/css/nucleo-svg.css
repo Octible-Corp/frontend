@@ -12,7 +12,9 @@ Icon colors
   height: 1em;
   width: 1em;
 }
-
+.font-link {
+  font-family: "Lato", sans-serif;
+}
 .icon use {
   /* icon secondary color - fill */
   fill: #7ea6f6;

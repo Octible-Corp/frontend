@@ -126,6 +126,7 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba, session_id, sessi
               overflow: 'auto',
               marginRight: 0,
               marginBottom: 0,
+              minHeight: "870px"
             }}
           >
             {loadingImg ? (
@@ -136,6 +137,8 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba, session_id, sessi
                   <Image
                     style={{
                       maxWidth: '100%',
+                      height: 'auto',
+                      width: '100%',
                       zIndex: 0,
                       boxShadow: '1px 1px 1px #9E9E9E',
                     }}
@@ -158,27 +161,27 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba, session_id, sessi
                     alignItems: 'center',
                     border: `2.5px solid ${dba.primary_color}`,
                     borderWidth: 3,
-                    boxShadow: '2px 2px 2px #9E9E9E',
+                    boxShadow: '0px 8px 7px #9E9E9E',
                   }}
                   src={`${url}${restaurant.logo_photo}`}
                 />
               </>
             )}
 
-            <p
+            <h1
               style={{
                 position: 'relative',
-                bottom: 25,
-                fontFamily: 'helvetica',
+                bottom: 35,
+                fontFamily: 'Lato',
                 fontWeight: 'bold',
                 color: dba.title_color,
-                fontSize: 55,
+                fontSize: 40,
               }}
             >
               {restaurant.name}
-            </p>
+            </h1>
             <Row
-              style={{ position: 'relative', bottom: 40, marginBottom: -10 }}
+              style={{ position: 'relative', bottom: 45, marginBottom: -20 }}
             >
               <Col>
                 <Button
@@ -186,21 +189,22 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba, session_id, sessi
                   style={{
                     position: 'relative',
                     borderRadius: '30px',
-                    width: 130,
-                    height: 40,
+                    width: 100,
+                    height: 37,
                     backgroundColor: dba.section_button_color,
                     borderColor: dba.section_button_color,
+                    marginLeft: "20px"
                   }}
                 >
                   <Link
                     style={{
                       color: dba.section_button_text_color,
-                      fontFamily: 'helvetica',
-                      fontSize: 20,
+                      fontFamily: 'Lato',
+                      fontSize: 15,
                       justifyContent: 'center',
                       position: 'absolute',
                       top: '5px',
-                      left: '23px',
+                      left: '18px',
                       textTransform: 'none'
                     }}
                     to='https://www.google.com'
@@ -215,22 +219,22 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba, session_id, sessi
                   style={{
                     position: 'relative',
                     borderRadius: '30px',
-                    width: 130,
-                    height: 40,
-                    padding: '0px',
+                    width: 100,
+                    height: 37,
                     backgroundColor: dba.section_button_color,
                     borderColor: dba.section_button_color,
+                    marginRight: "20px"
                   }}
                 >
                   <Link
                     style={{
                       color: dba.section_button_text_color,
-                      fontFamily: 'helvetica',
-                      fontSize: 18,
+                      fontFamily: 'Lato',
+                      fontSize: 15,
                       justifyContent: 'center',
                       position: 'absolute',
-                      top: '7px',
-                      left: '20px',
+                      top: '5px',
+                      left: '12px',
                       textTransform: 'none'
                     }}
                     to={'/pdf/photos'}
@@ -243,9 +247,8 @@ const Landing = ({ restaurant, sections, getMenu, loaded, dba, session_id, sessi
 
             <p
               style={{
-                marginBottom: 20,
-                marginTop: 5,
-                fontFamily: 'helvetica',
+                marginBottom: 15,
+                fontFamily: 'Lato',
                 fontSize: 25,
                 color: dba.subtitle_color,
               }}
